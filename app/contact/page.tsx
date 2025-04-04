@@ -340,7 +340,7 @@ export default function ContactPage() {
                 <CardContent>
                   <p>
                     We accept various payment methods including credit/debit cards (Visa, MasterCard, American Express),
-                    bank transfers, and digital payment platforms. For certain packages, we also offer installment
+                    bank transfers, UPI and other digital payment platforms. For certain packages, we also offer installment
                     payment options. Please contact our team for more details on payment plans.
                   </p>
                 </CardContent>

@@ -19,42 +19,63 @@ const destinations: Destination[] = [
     name: "Bali",
     location: "Indonesia",
     image: "/placeholder.svg?height=600&width=800",
-    price: "From $899",
+    price: "price",
   },
   {
     id: 2,
     name: "Tokyo",
     location: "Japan",
     image: "/placeholder.svg?height=600&width=800",
-    price: "From $1,299",
+    price: "price",
   },
   {
     id: 3,
     name: "Dubai",
     location: "UAE",
     image: "/placeholder.svg?height=600&width=800",
-    price: "From $999",
+    price: "price",
   },
   {
     id: 4,
     name: "Paris",
     location: "France",
     image: "/placeholder.svg?height=600&width=800",
-    price: "From $1,199",
+    price: "price",
   },
   {
     id: 5,
     name: "Goa",
     location: "India",
     image: "/placeholder.svg?height=600&width=800",
-    price: "From $699",
+    price: "price",
   },
   {
     id: 6,
     name: "Santorini",
     location: "Greece",
     image: "/placeholder.svg?height=600&width=800",
-    price: "From $1,099",
+    price: "price",
+  },
+  {
+    id: 7,
+    name: "New York",
+    location: "USA",
+    image: "/placeholder.svg?height=600&width=800",
+    price: "price",
+  },
+  {
+    id: 8,
+    name: "Sydney",
+    location: "Australia",
+    image: "/placeholder.svg?height=600&width=800",
+    price: "price",
+  },
+  {
+    id: 9,
+    name: "Rome",
+    location: "Italy",
+    image: "/placeholder.svg?height=600&width=800",
+    price: "price",
   },
 ]
 
@@ -128,9 +149,9 @@ export default function DestinationsCarousel() {
                       alt={destination.name}
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                     />
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                    {/* <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                       <p className="text-white font-bold">{destination.price}</p>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="p-4">
                     <h3 className="text-xl font-bold">{destination.name}</h3>

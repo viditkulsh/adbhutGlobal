@@ -6,6 +6,7 @@ import { Menu, X, Sun, Moon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useTheme } from "next-themes"
 import { motion, AnimatePresence } from "framer-motion"
+import Image from "next/image"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -41,7 +42,15 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
+          {/* Logo and Brand Name */}
           <Link href="/" className="flex items-center space-x-2">
+            <Image
+              src="/logo_transparent.png" // Path to the logo in the public folder
+              alt="Adbhut Global Logo"
+              width={40} // Adjust width as needed
+              height={40} // Adjust height as needed
+              className="h-10 w-10 object-contain" // Tailwind classes for styling
+            />
             <span className="text-2xl font-bold text-primary">Adbhut Global</span>
           </Link>
 
