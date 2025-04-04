@@ -234,7 +234,7 @@ export default function ContactPage() {
                           <div>
                             <h3 className="font-bold">Our Office</h3>
                             <p className="text-muted-foreground">
-                              123 Travel Street, Tourism City, 12345
+                              Railway Enclave, Pratap Vihar, Ghaziabad 201009 
                               <br />
                               Open Monday-Friday, 9:00 AM - 6:00 PM
                             </p>
@@ -252,9 +252,7 @@ export default function ContactPage() {
                           <div>
                             <h3 className="font-bold">Phone</h3>
                             <p className="text-muted-foreground">
-                              General: +91 1234567890
-                              <br />
-                              Bookings: +91 1234567890
+                              Mobile: +91 7290954561
                             </p>
                           </div>
                         </div>
@@ -271,15 +269,14 @@ export default function ContactPage() {
                             <h3 className="font-bold">Email</h3>
                             <p className="text-muted-foreground">
                               info@adbhutglobal.com
-                              <br />
-                              bookings@adbhutglobal.com
                             </p>
                           </div>
                         </div>
                       </CardContent>
                     </Card>
 
-                    <Card>
+                  {/* Uncomment if you have a live chat feature */}
+                    {/* <Card>
                       <CardContent className="p-6">
                         <div className="flex items-start space-x-4">
                           <div className="bg-primary/10 p-3 rounded-full">
@@ -295,7 +292,7 @@ export default function ContactPage() {
                           </div>
                         </div>
                       </CardContent>
-                    </Card>
+                    </Card> */}   
                   </div>
 
                   <div className="h-80 bg-muted rounded-lg overflow-hidden">

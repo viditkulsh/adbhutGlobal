@@ -10,8 +10,8 @@ export default function Home() {
       <HeroSection />
       <DestinationsCarousel />
       <FeaturesSection />
-      <TestimonialsSlider />
-      <NewsletterSection />
+      {/* <TestimonialsSlider />  // Uncomment this line to enable the testimonials slider*/}
+      {/* <NewsletterSection /> // Uncomment this line to enable the newsletter section */}
     </>
   )
 }

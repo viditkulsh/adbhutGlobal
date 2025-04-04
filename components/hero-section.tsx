@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
+import Link from "next/link"
 
 export default function HeroSection() {
   return (
@@ -10,7 +11,7 @@ export default function HeroSection() {
         <source src="/videos/travel-video.mp4" type="video/mp4" />
         {/* Fallback image if video doesn't load */}
         <img
-          src="/placeholder.svg?height=1080&width=1920"
+          src="public\hotair_landscape.jpg?height=1080&width=1920"
           alt="Travel destinations"
           className="w-full h-full object-cover"
         />
@@ -39,12 +40,14 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <Button
-            size="lg"
-            className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105"
-          >
-            Explore Packages
-          </Button>
+          <Link href="/packages">
+            <Button
+              size="lg"
+              className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105"
+            >
+              Explore Packages
+            </Button>
+          </Link>
         </motion.div>
       </div>
     </div>

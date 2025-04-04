@@ -99,11 +99,11 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 mt-0.5 flex-shrink-0" />
-                <span>123 Travel Street, Tourism City, 12345</span>
+                <span>Railway Enclave, Pratap Vihar, Ghaziabad 201009</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 flex-shrink-0" />
-                <span>+1 (234) 567-8900</span>
+                <span>+91 7290954561</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 flex-shrink-0" />

@@ -43,7 +43,7 @@ export default function Navbar() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo and Brand Name */}
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-3">
             <Image
               src="/logo_transparent.png" // Path to the logo in the public folder
               alt="Adbhut Global Logo"
@@ -51,7 +51,10 @@ export default function Navbar() {
               height={40} // Adjust height as needed
               className="h-10 w-10 object-contain" // Tailwind classes for styling
             />
-            <span className="text-2xl font-bold text-primary">Adbhut Global</span>
+            <div className="flex flex-col">
+              <span className="text-2xl font-bold text-primary">Adbhut Global</span>
+              <span className="text-sm text-blue-primary">Tour and Travel Services</span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
