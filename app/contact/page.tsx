@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { MapPin, Phone, Mail, MessageSquare } from "lucide-react"
+import emailjs from "@emailjs/browser"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -37,17 +38,48 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the form data to your API
-    console.log("Form submitted:", formData)
-
-    // Simulate form submission
-    setFormStatus({
-      submitted: true,
-      success: true,
-      message: "Thank you for your message! We'll get back to you shortly.",
-    })
-
-    // Reset form after successful submission
+  
+    // Send form data using EmailJS
+    emailjs
+      .send(
+        "global_adbhut_mail", // Replace with your EmailJS Service ID
+        "Message_Recieved_Confirm", // Replace with your EmailJS Template ID
+        formData, // Form data to send
+        "q5ZT1q-4lvQ36KIa0" // Replace with your EmailJS Public Key
+      )
+      .then(
+        (response) => {
+          console.log("Email sent successfully (Template 1):", response);
+  
+          // Send form data using the second template
+          return emailjs.send(
+            "global_adbhut_mail", // Service ID
+            "query_to_malik", // Template ID 2
+            formData, // Form data to send
+            "q5ZT1q-4lvQ36KIa0" // Public Key
+          );
+        }
+      )
+      .then(
+        (response) => {
+          console.log("Email sent successfully:", response)
+          setFormStatus({
+            submitted: true,
+            success: true,
+            message: "Thank you for your message! We'll get back to you shortly.",
+          })
+        },
+        (error) => {
+          console.error("Failed to send email:", error) // Log the full error object
+          setFormStatus({
+            submitted: true,
+            success: false,
+            message: "Something went wrong. Please try again later.",
+          })
+        }
+      )
+  
+    // Reset form after submission
     setFormData({
       name: "",
       email: "",
@@ -55,7 +87,7 @@ export default function ContactPage() {
       subject: "",
       message: "",
     })
-
+  
     // Clear success message after 5 seconds
     setTimeout(() => {
       setFormStatus(null)
@@ -129,7 +161,7 @@ export default function ContactPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="+1 (234) 567-8900"
+                        placeholder="+91 1234567890"
                       />
                     </div>
                     <div>
@@ -220,9 +252,9 @@ export default function ContactPage() {
                           <div>
                             <h3 className="font-bold">Phone</h3>
                             <p className="text-muted-foreground">
-                              General: +1 (234) 567-8900
+                              General: +91 1234567890
                               <br />
-                              Bookings: +1 (234) 567-8901
+                              Bookings: +91 1234567890
                             </p>
                           </div>
                         </div>
