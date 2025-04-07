@@ -1,23 +1,52 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import Link from "next/link"
 
+const images = [
+  "/International/Africa/pic1.jpg",
+  "/International/Baku/pic2.jpg",
+  "/International/Malaysia/pic3.jpg",
+  "/International/Sri_Lanka/pic4.jpg",
+  "/International/Dubai/pic5.jpg",
+]
+
 export default function HeroSection() {
+  const [current, setCurrent] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % images.length)
+    }, 4000) // change image every 4 seconds
+
+    return () => clearInterval(interval)
+  }, [])
+
   return (
-    <div className="hero-video-container">
-      <video autoPlay muted loop playsInline className="w-full h-full object-cover">
-        <source src="/videos/travel-video.mp4" type="video/mp4" />
-        {/* Fallback image if video doesn't load */}
-        <img
-          src="public\hotair_landscape.jpg?height=1080&width=1920"
-          alt="Travel destinations"
-          className="w-full h-full object-cover"
-        />
-      </video>
-      <div className="hero-overlay"></div>
-      <div className="container mx-auto px-4 relative h-full flex flex-col justify-center items-center text-center text-white">
+    <div className="relative w-full h-screen overflow-hidden">
+      {/* Slideshow */}
+      <div className="absolute inset-0">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={images[current]}
+            src={images[current]}
+            alt={`Slide ${current + 1}`}
+            initial={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="w-full h-full object-cover absolute inset-0"
+          />
+        </AnimatePresence>
+      </div>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-50 z-10" />
+
+      {/* Content */}
+      <div className="container mx-auto px-4 relative z-20 h-full flex flex-col justify-center items-center text-center text-white">
         <motion.h1
           className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
           initial={{ opacity: 0, y: 20 }}
@@ -53,4 +82,3 @@ export default function HeroSection() {
     </div>
   )
 }
-
