@@ -1,32 +1,18 @@
 "use client"
 
-import type React from "react"
-
-import { useState } from "react"
+import React, { useState } from "react"
 import { motion } from "framer-motion"
-import { Plane, Users, Calendar, MapPin, Search } from "lucide-react"
+import { Plane, Users, Calendar, MapPin, TicketPercent, HeartHandshake, PartyPopper, Globe2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { DatePicker } from "@/components/ui/date-picker"
+import CorporateForm from "@/components/corporate-form"
 
 export default function ServicesPage() {
-  const [flightSearchData, setFlightSearchData] = useState({
-    from: "",
-    to: "",
-    departDate: new Date(),
-    returnDate: new Date(),
-    passengers: "1",
-    class: "economy",
-  })
-
-  const handleFlightSearch = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle flight search logic here
-    console.log("Flight search:", flightSearchData)
-  }
+  const [showCorporateForm, setShowCorporateForm] = useState(false)
 
   return (
     <>
@@ -35,7 +21,7 @@ export default function ServicesPage() {
           <div className="container mx-auto px-4">
             <h1 className="text-3xl md:text-5xl font-bold mb-4 text-center">Our Services</h1>
             <p className="text-center max-w-3xl mx-auto">
-              Comprehensive travel solutions for all your needs - from flight bookings to corporate events
+              Comprehensive travel solutions for all your needs - from curated event experiences to corporate travel
             </p>
           </div>
         </div>
@@ -43,129 +29,121 @@ export default function ServicesPage() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Flight Booking</h2>
+              <h2 className="text-3xl font-bold mb-4">Event Experience Packages</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Search and book flights to destinations worldwide with our easy-to-use flight search engine
+                Enjoy exclusive cultural, business, and leisure event packages designed to deliver immersive and memorable experiences
               </p>
             </div>
 
-            <Card className="max-w-4xl mx-auto">
-              <CardContent className="p-6">
-                <Tabs defaultValue="roundtrip">
-                  <TabsList className="grid w-full grid-cols-3 mb-6">
-                    <TabsTrigger value="roundtrip">Round Trip</TabsTrigger>
-                    <TabsTrigger value="oneway">One Way</TabsTrigger>
-                    <TabsTrigger value="multicity">Multi-City</TabsTrigger>
-                  </TabsList>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="bg-card rounded-lg shadow-md overflow-hidden"
+              >
+                <div className="h-48 bg-primary/20 flex items-center justify-center">
+                  <TicketPercent className="h-16 w-16 text-primary" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">Cultural Events</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Experience local traditions and festivals with exclusive access, guided tours, and curated cultural journeys.
+                  </p>
+                </div>
+              </motion.div>
 
-                  <TabsContent value="roundtrip">
-                    <form onSubmit={handleFlightSearch}>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                          <label className="block text-sm font-medium mb-1">From</label>
-                          <div className="relative">
-                            <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                            <Input
-                              placeholder="City or Airport"
-                              className="pl-10"
-                              value={flightSearchData.from}
-                              onChange={(e) => setFlightSearchData({ ...flightSearchData, from: e.target.value })}
-                            />
-                          </div>
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium mb-1">To</label>
-                          <div className="relative">
-                            <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                            <Input
-                              placeholder="City or Airport"
-                              className="pl-10"
-                              value={flightSearchData.to}
-                              onChange={(e) => setFlightSearchData({ ...flightSearchData, to: e.target.value })}
-                            />
-                          </div>
-                        </div>
-                      </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="bg-card rounded-lg shadow-md overflow-hidden"
+              >
+                <div className="h-48 bg-primary/20 flex items-center justify-center">
+                  <Users className="h-16 w-16 text-primary" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">Business Networking Events</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Join high-level summits and expos with tailored networking, hospitality, and travel solutions.
+                  </p>
+                </div>
+              </motion.div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                          <label className="block text-sm font-medium mb-1">Depart</label>
-                          <DatePicker
-                            date={flightSearchData.departDate}
-                            setDate={(date) =>
-                              setFlightSearchData({ ...flightSearchData, departDate: date || new Date() })
-                            }
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium mb-1">Return</label>
-                          <DatePicker
-                            date={flightSearchData.returnDate}
-                            setDate={(date) =>
-                              setFlightSearchData({ ...flightSearchData, returnDate: date || new Date() })
-                            }
-                          />
-                        </div>
-                      </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="bg-card rounded-lg shadow-md overflow-hidden"
+              >
+                <div className="h-48 bg-primary/20 flex items-center justify-center">
+                  <Calendar className="h-16 w-16 text-primary" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">Leisure & Festival Packages</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Enjoy world-famous festivals, concerts, and events with priority access, premium stays, and full coordination.
+                  </p>
+                </div>
+              </motion.div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                        <div>
-                          <label className="block text-sm font-medium mb-1">Passengers</label>
-                          <Select
-                            value={flightSearchData.passengers}
-                            onValueChange={(value) => setFlightSearchData({ ...flightSearchData, passengers: value })}
-                          >
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select passengers" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="1">1 Passenger</SelectItem>
-                              <SelectItem value="2">2 Passengers</SelectItem>
-                              <SelectItem value="3">3 Passengers</SelectItem>
-                              <SelectItem value="4">4 Passengers</SelectItem>
-                              <SelectItem value="5">5+ Passengers</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium mb-1">Class</label>
-                          <Select
-                            value={flightSearchData.class}
-                            onValueChange={(value) => setFlightSearchData({ ...flightSearchData, class: value })}
-                          >
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select class" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="economy">Economy</SelectItem>
-                              <SelectItem value="premium">Premium Economy</SelectItem>
-                              <SelectItem value="business">Business</SelectItem>
-                              <SelectItem value="first">First Class</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="bg-card rounded-lg shadow-md overflow-hidden"
+              >
+                <div className="h-48 bg-primary/20 flex items-center justify-center">
+                  <Globe2 className="h-16 w-16 text-primary" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">Leisure Travel Packages</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Customized domestic and international holiday plans tailored for families, couples, and solo travelers.
+                  </p>
+                </div>
+              </motion.div>
 
-                      <Button type="submit" className="w-full">
-                        <Search className="mr-2 h-4 w-4" /> Search Flights
-                      </Button>
-                    </form>
-                  </TabsContent>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="bg-card rounded-lg shadow-md overflow-hidden"
+              >
+                <div className="h-48 bg-primary/20 flex items-center justify-center">
+                  <MapPin className="h-16 w-16 text-primary" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">Group Tours</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Curated tours for educational institutions, corporate outings, and special interest groups.
+                  </p>
+                </div>
+              </motion.div>
 
-                  <TabsContent value="oneway">
-                    <div className="p-4 text-center">
-                      <p>One way flight booking form would go here</p>
-                    </div>
-                  </TabsContent>
-
-                  <TabsContent value="multicity">
-                    <div className="p-4 text-center">
-                      <p>Multi-city flight booking form would go here</p>
-                    </div>
-                  </TabsContent>
-                </Tabs>
-              </CardContent>
-            </Card>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                viewport={{ once: true }}
+                className="bg-card rounded-lg shadow-md overflow-hidden"
+              >
+                <div className="h-48 bg-primary/20 flex items-center justify-center">
+                  <HeartHandshake className="h-16 w-16 text-primary" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">Destination Weddings & Honeymoons</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Celebrate love with scenic wedding destinations and romantic honeymoon getaways.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </section>
 
@@ -276,7 +254,7 @@ export default function ServicesPage() {
                 className="relative h-[400px] rounded-lg overflow-hidden"
               >
                 <img
-                  src="/placeholder.svg?height=800&width=600"
+                  src="/Company/MICE.jpeg?height=800&width=600"
                   alt="Corporate Event"
                   className="w-full h-full object-cover"
                 />
@@ -300,11 +278,20 @@ export default function ServicesPage() {
                   Our dedicated corporate travel specialists work closely with your team to understand your specific
                   needs and preferences, providing personalized solutions that align with your business objectives.
                 </p>
-                <Button>Contact Our Corporate Team</Button>
+                <Button onClick={() => setShowCorporateForm(!showCorporateForm)}>
+                  Contact Our Corporate Team
+                </Button>
               </motion.div>
             </div>
           </div>
         </section>
+
+        {/* Corporate Enquiry Form */}
+        {showCorporateForm && (
+          <div className="pb-16"> {/* Add padding below the form */}
+            <CorporateForm />
+          </div>
+        )}
 
         <section className="py-16 bg-muted">
           <div className="container mx-auto px-4">
@@ -324,7 +311,7 @@ export default function ServicesPage() {
                 <CardContent>
                   <div className="h-48 mb-4 bg-muted rounded-md overflow-hidden">
                     <img
-                      src="/placeholder.svg?height=400&width=600"
+                      src="Company/Networking.webp?height=400&width=600"
                       alt="Tech Conference"
                       className="w-full h-full object-cover"
                     />
@@ -347,7 +334,7 @@ export default function ServicesPage() {
                 <CardContent>
                   <div className="h-48 mb-4 bg-muted rounded-md overflow-hidden">
                     <img
-                      src="/placeholder.svg?height=400&width=600"
+                      src="Company/Incentive.webp?height=400&width=600"
                       alt="Incentive Trip"
                       className="w-full h-full object-cover"
                     />
@@ -370,7 +357,7 @@ export default function ServicesPage() {
                 <CardContent>
                   <div className="h-48 mb-4 bg-muted rounded-md overflow-hidden">
                     <img
-                      src="/placeholder.svg?height=400&width=600"
+                      src="Company/Prod_launch.avif?height=400&width=600"
                       alt="Product Launch"
                       className="w-full h-full object-cover"
                     />
