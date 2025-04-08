@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
+import "leaflet/dist/leaflet.css"
 
 const fontSans = FontSans({
   subsets: ["latin"],

@@ -1,8 +1,14 @@
 "use client"
 
+import dynamic from "next/dynamic"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { MapPin } from "lucide-react"
+
+// Dynamically import the Leaflet map to avoid SSR issues
+const InteractiveMap = dynamic(() => import("@/components/interactive_map"), {
+  ssr: false,
+})
 
 export default function AboutPage() {
   const timelineItems = [
@@ -74,7 +80,7 @@ export default function AboutPage() {
                 className="relative h-[400px] rounded-lg overflow-hidden"
               >
                 <Image
-                  src="/placeholder.svg?height=800&width=600"
+                  src="/Company/collage_pic3.jpg?height=800&width=600"
                   alt="About Adbhut Global"
                   fill
                   className="object-cover"
@@ -162,39 +168,20 @@ export default function AboutPage() {
         </section>
 
         <section className="py-16 bg-muted">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Global Presence</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">Our service locations around the world</p>
-            </div>
-
-            <div className="relative h-[500px] rounded-lg overflow-hidden">
-              <div className="absolute inset-0 bg-card rounded-lg">
-                {/* This would be replaced with an actual interactive map component */}
-                <Image src="/placeholder.svg?height=1000&width=2000" alt="Global Map" fill className="object-cover" />
-
-                {/* Sample location markers */}
-                <div className="absolute top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2">
-                  <div className="bg-primary text-primary-foreground rounded-full p-2 shadow-lg">
-                    <MapPin className="h-6 w-6" />
-                  </div>
-                </div>
-
-                <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <div className="bg-primary text-primary-foreground rounded-full p-2 shadow-lg">
-                    <MapPin className="h-6 w-6" />
-                  </div>
-                </div>
-
-                <div className="absolute top-1/2 left-3/4 transform -translate-x-1/2 -translate-y-1/2">
-                  <div className="bg-primary text-primary-foreground rounded-full p-2 shadow-lg">
-                    <MapPin className="h-6 w-6" />
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Popular Destinations</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Some of the popular destinations that we serve around the world
+            </p>
           </div>
-        </section>
+
+          <div className="relative h-[500px] rounded-lg overflow-hidden">
+            <InteractiveMap />
+          </div>
+        </div>
+      </section>
+
       </div>
     </>
   )
