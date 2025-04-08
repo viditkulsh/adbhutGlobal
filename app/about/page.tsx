@@ -55,7 +55,7 @@ export default function AboutPage() {
               >
                 <h2 className="text-3xl font-bold mb-6">Our Story</h2>
                 <p className="mb-4">
-                  Founded in 2010, Adbhut Global Tour and Travel Services began with a simple mission: to create
+                  Founded in 2025, Adbhut Global Tour and Travel Services began with a simple mission: to create
                   unforgettable travel experiences that enrich lives and create lasting memories.
                 </p>
                 <p className="mb-4">

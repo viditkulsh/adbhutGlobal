@@ -36,7 +36,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
+            transition={{ duration: 1.0, ease: "easeInOut" }}
             className="w-full h-full object-cover absolute inset-0"
           />
         </AnimatePresence>
