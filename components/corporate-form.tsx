@@ -20,6 +20,7 @@ import {
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { toast } from "@/components/ui/use-toast"
+import emailjs from "@emailjs/browser"
 
 export default function CorporateForm() {
   const [formData, setFormData] = useState<{
@@ -56,7 +57,14 @@ export default function CorporateForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!formData.destination || !formData.startDate || !formData.endDate) {
+    if (
+      !formData.companyName || 
+      !formData.contactEmail || 
+      !formData.contactPhone || 
+      !formData.destination || 
+      !formData.startDate || 
+      !formData.endDate
+    ) {
       toast({
         title: "Error",
         description: "Please fill in all required fields",
@@ -64,15 +72,35 @@ export default function CorporateForm() {
       })
       return
     }
-    
+
     setIsSubmitting(true)
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false)
+
+    try {
+      await emailjs.send(
+        "global_adbhut_mail", // Service ID
+        "Message_Recieved_Confirm", // Template ID
+        {
+          destination: formData.destination,
+          startDate: formData.startDate?.toLocaleDateString(),
+          endDate: formData.endDate?.toLocaleDateString(),
+          groupSize: formData.groupSize,
+          budget: formData.budget,
+          eventType: formData.eventType,
+          addOns: formData.addOns,
+          notes: formData.notes,
+          companyName: formData.companyName,
+          contactEmail: formData.contactEmail,
+          contactPhone: formData.contactPhone
+        },
+        "q5ZT1q-4lvQ36KIa0" // Public key
+      )
+
       toast({
         title: "Success",
         description: "Your enquiry has been submitted successfully!",
       })
+
+      // Reset form
       setFormData({
         destination: "",
         startDate: null,
@@ -86,7 +114,16 @@ export default function CorporateForm() {
         contactEmail: "",
         contactPhone: ""
       })
-    }, 1500)
+    } catch (error) {
+      console.error("EmailJS error:", error)
+      toast({
+        title: "Submission Failed",
+        description: "There was a problem sending your enquiry. Please try again later.",
+        variant: "destructive"
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -107,7 +144,7 @@ export default function CorporateForm() {
           <h4 className="text-lg font-semibold text-gray-900 dark:text-white">Contact Details</h4>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="companyName">Company Name</Label>
+              <Label htmlFor="companyName">Company Name *</Label>
               <div className="relative">
                 <Building className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <Input 
@@ -117,11 +154,12 @@ export default function CorporateForm() {
                   onChange={handleInputChange}
                   placeholder="Your company"
                   className="pl-10"
+                  required
                 />
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="contactEmail">Email</Label>
+              <Label htmlFor="contactEmail">Email *</Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <Input 
@@ -132,11 +170,12 @@ export default function CorporateForm() {
                   onChange={handleInputChange}
                   placeholder="email@company.com"
                   className="pl-10"
+                  required
                 />
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="contactPhone">Phone</Label>
+              <Label htmlFor="contactPhone">Phone *</Label>
               <div className="relative">
                 <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <Input 
@@ -147,6 +186,7 @@ export default function CorporateForm() {
                   onChange={handleInputChange}
                   placeholder="+1 (555) 123-4567"
                   className="pl-10"
+                  required
                 />
               </div>
             </div>

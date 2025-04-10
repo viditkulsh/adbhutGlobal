@@ -172,9 +172,6 @@ export default function ServicesPage() {
                   <p className="text-muted-foreground mb-4">
                     Professional meeting arrangements with attention to every detail, from venue selection to catering.
                   </p>
-                  <Button variant="outline" className="w-full">
-                    Learn More
-                  </Button>
                 </div>
               </motion.div>
 
@@ -193,9 +190,6 @@ export default function ServicesPage() {
                   <p className="text-muted-foreground mb-4">
                     Motivational travel programs designed to reward and inspire your team's performance.
                   </p>
-                  <Button variant="outline" className="w-full">
-                    Learn More
-                  </Button>
                 </div>
               </motion.div>
 
@@ -214,9 +208,6 @@ export default function ServicesPage() {
                   <p className="text-muted-foreground mb-4">
                     End-to-end conference management services for events of all sizes and complexities.
                   </p>
-                  <Button variant="outline" className="w-full">
-                    Learn More
-                  </Button>
                 </div>
               </motion.div>
 
@@ -235,9 +226,6 @@ export default function ServicesPage() {
                   <p className="text-muted-foreground mb-4">
                     Comprehensive exhibition planning and management services to showcase your brand effectively.
                   </p>
-                  <Button variant="outline" className="w-full">
-                    Learn More
-                  </Button>
                 </div>
               </motion.div>
             </div>

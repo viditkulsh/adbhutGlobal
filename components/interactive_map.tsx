@@ -14,18 +14,20 @@ L.Icon.Default.mergeOptions({
 
 // Define service locations with explicit LatLngTuple type
 const serviceLocations: { city: string; coords: LatLngTuple }[] = [
-    { city: "Paris", coords: [48.8566, 2.3522] },
-    { city: "New York", coords: [40.7128, -74.006] },
-    { city: "Tokyo", coords: [35.6762, 139.6503] },
-    { city: "Delhi", coords: [28.6139, 77.209] },
-    { city: "Sydney", coords: [-33.8688, 151.2093] },
-    { city: "Cape Town", coords: [-33.9249, 18.4241] },
-    { city: "Dubai", coords: [25.276987, 55.296249] },
-    { city: "Singapore", coords: [1.3521, 103.8198] },
-    { city: "London", coords: [51.5074, -0.1278] },
-    { city: "Bangkok", coords: [13.7563, 100.5018] },
-    { city: "Istanbul", coords: [41.0082, 28.9784] },
-    { city: "Rome", coords: [41.9028, 12.4964] },
+  { city: "Bali", coords: [-8.3405, 115.0920] },
+  { city: "Tokyo", coords: [35.6762, 139.6503] },
+  { city: "Paris", coords: [48.8566, 2.3522] },
+  { city: "Goa", coords: [15.2993, 74.1240] },
+  { city: "New York", coords: [40.7128, -74.0060] },
+  { city: "Singapore", coords: [1.3521, 103.8198] },
+  { city: "Bangkok", coords: [13.7563, 100.5018] },
+  { city: "Hong Kong", coords: [22.3964, 114.1098] },
+  { city: "Sydney", coords: [-33.8688, 151.2093] },
+  { city: "Los Angeles", coords: [34.0522, -118.2437] },
+  { city: "Moscow", coords: [55.7558, 37.6173] },
+  { city: "Rome", coords: [41.9028, 12.4964] },
+  { city: "Amsterdam", coords: [52.3676, 4.9041] },
+  { city: "Cape Town", coords: [-33.9249, 18.4241] }
 ]
 
 export default function InteractiveMap() {
@@ -40,7 +42,7 @@ export default function InteractiveMap() {
   }
 
   return (
-    <div className="relative w-full h-[500px]"> {/* Fixed frame for the map */}
+    <div className="relative w-full h-[500px] z-0"> {/* Set z-0 to ensure it stays behind */}
       <MapContainer center={[20, 0]} zoom={2} scrollWheelZoom={false} className="h-full w-full">
         <TileLayer
           attribution='&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
