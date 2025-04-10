@@ -82,7 +82,9 @@ export default function Navbar() {
             <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
               {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
-            <Button>Book Now</Button>
+            <Link href="/contact">
+              <Button>Contact Us</Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}

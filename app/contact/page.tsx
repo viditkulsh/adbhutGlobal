@@ -295,12 +295,13 @@ export default function ContactPage() {
                     </Card> */}   
                   </div>
 
-                  <div className="h-80 bg-muted rounded-lg overflow-hidden">
-                    {/* This would be replaced with an actual Google Maps embed */}
+                  
+                  {/* This would be replaced with an actual Google Maps embed */}
+                  {/* <div className="h-80 bg-muted rounded-lg overflow-hidden">
                     <div className="w-full h-full bg-muted flex items-center justify-center">
                       <p className="text-muted-foreground">Google Maps Integration</p>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </motion.div>
             </div>
