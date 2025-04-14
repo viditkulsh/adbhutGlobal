@@ -4,6 +4,7 @@ import dynamic from "next/dynamic"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { MapPin } from "lucide-react"
+import ClientOnly from "@/components/client_only" // Import the ClientOnly component
 
 // Dynamically import the Leaflet map to avoid SSR issues
 const InteractiveMap = dynamic(() => import("@/components/interactive_map"), {
@@ -169,19 +170,21 @@ export default function AboutPage() {
         </section>
 
         <section className="py-16 bg-muted">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Popular Destinations</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Some of the popular destinations that we serve around the world
-            </p>
-          </div>
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Popular Destinations</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Some of the popular destinations that we serve around the world
+              </p>
+            </div>
 
-          <div className="relative h-[500px] rounded-lg overflow-hidden">
-            <InteractiveMap />
+            <div className="relative h-[500px] rounded-lg overflow-hidden">
+              <ClientOnly>
+                <InteractiveMap />
+              </ClientOnly>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       </div>
     </>

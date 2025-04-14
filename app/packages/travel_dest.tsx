@@ -73,7 +73,7 @@ export const travelPackages: Package[] = [
       id: 4,
       title: "Enchanting Rajasthan",
       location: "Rajasthan, India",
-      image: "/Domestic/Rajasthan/pic2.jpeg?height=600&width=800",
+      image: "/Domestic/Rajasthan/pic4.jpg?height=600&width=800",
       duration: "10 Days / 9 Nights",
       groupSize: "Up to 12 people",
       description:
@@ -122,25 +122,6 @@ export const travelPackages: Package[] = [
         "Visit to historic churches and forts",
         "Sunset cruise on the Arabian Sea",
         "Authentic Goan seafood cuisine",
-      ],
-      category: "domestic",
-      featured: false,
-    },
-    {
-      id: 7,
-      title: "Himalayan Adventure",
-      location: "Himachal Pradesh, India",
-      image: "/Domestic/Himalaya/pic1.webp?height=600&width=800",
-      duration: "8 Days / 7 Nights",
-      groupSize: "Up to 12 people",
-      description:
-        "Embark on an exhilarating journey through the majestic Himalayas. Experience trekking, river rafting, and the breathtaking landscapes of Himachal Pradesh.",
-      highlights: [
-        "Trekking in Manali and Kasol",
-        "River rafting in Kullu",
-        "Visit to Solang Valley and Rohtang Pass",
-        "Cultural experiences with local tribes",
-        "Stay in cozy mountain lodges",
       ],
       category: "domestic",
       featured: false,
@@ -377,7 +358,7 @@ export const travelPackages: Package[] = [
       id: 20,
       title: "Barcelona City Break",
       location: "Barcelona, Spain",
-      image: "/International/Spain/pic1.jpg?height=600&width=800",
+      image: "/International/Spain/pic1.png?height=600&width=800",
       duration: "5 Days / 4 Nights",
       groupSize: "Up to 10 people",
       description:
@@ -453,7 +434,7 @@ export const travelPackages: Package[] = [
       id: 24,
       title: "African Safari Adventure",
       location: "Kenya, Africa",
-      image: "/International/Africa/safari.jpg?height=600&width=800",
+      image: "/International/Africa/pic1.jpg?height=600&width=800",
       duration: "10 Days / 9 Nights",
       groupSize: "Up to 8 people",
       description:
@@ -491,7 +472,7 @@ export const travelPackages: Package[] = [
       id: 26,
       title: "Baku City Exploration",
       location: "Baku, Azerbaijan",
-      image: "/International/Baku/pic1.jpg?height=600&width=800",
+      image: "/International/Baku/pic2.jpg?height=600&width=800",
       duration: "5 Days / 4 Nights",
       groupSize: "Up to 10 people",
       description:
@@ -510,7 +491,7 @@ export const travelPackages: Package[] = [
       id: 27,
       title: "Istanbul Cultural Journey",
       location: "Istanbul, Turkey",
-      image: "/International/Turkey/pic1.jpg?height=600&width=800",
+      image: "/International/Turkey/pic1.avif?height=600&width=800",
       duration: "6 Days / 5 Nights",
       groupSize: "Up to 10 people",
       description:
@@ -529,7 +510,7 @@ export const travelPackages: Package[] = [
       id: 28,
       title: "Tokyo Highlights Tour",
       location: "Tokyo, Japan",
-      image: "/International/Japan/tokyo-highlights.jpg?height=600&width=800",
+      image: "/International/Japan/pic1.webp?height=600&width=800",
       duration: "5 Days / 4 Nights",
       groupSize: "Up to 8 people",
       description:
@@ -567,7 +548,7 @@ export const travelPackages: Package[] = [
       id: 30,
       title: "Vietnam Cultural Odyssey",
       location: "Vietnam",
-      image: "/International/Vietnam/pic1.jpg?height=600&width=800",
+      image: "/International/Vietnam/pic1.webp?height=600&width=800",
       duration: "10 Days / 9 Nights",
       groupSize: "Up to 12 people",
       description:
@@ -586,7 +567,7 @@ export const travelPackages: Package[] = [
       id: 31,
       title: "Sri Lanka Nature Retreat",
       location: "Sri Lanka",
-      image: "/International/Sri Lanka/pic1.jpg?height=600&width=800",
+      image: "/International/Sri_Lanka/pic1.jpg?height=600&width=800",
       duration: "8 Days / 7 Nights",
       groupSize: "Up to 10 people",
       description:
@@ -605,7 +586,7 @@ export const travelPackages: Package[] = [
       id: 32,
       title: "Mexico Beach Getaway",
       location: "Mexico",
-      image: "/International/Mexico/pic1.jpg?height=600&width=800",
+      image: "/International/Mexico/pic1.webp?height=600&width=800",
       duration: "6 Days / 5 Nights",
       groupSize: "Up to 10 people",
       description:
@@ -681,7 +662,7 @@ export const travelPackages: Package[] = [
       id: 36,
       title: "Kashmir Valley Retreat",
       location: "Kashmir, India",
-      image: "/Domestic/Kashmir/pic1.jpg?height=600&width=800",
+      image: "/Domestic/Kashmir/pic2.webp?height=600&width=800",
       duration: "7 Days / 6 Nights",
       groupSize: "Up to 8 people",
       description:
@@ -713,7 +694,7 @@ export const travelPackages: Package[] = [
         "Boat ride in Chilika Lake to spot migratory birds",
       ],
       category: "domestic",
-      featured: true,
+      featured: false,
     },
     {
       id: 38,
@@ -739,7 +720,7 @@ export const travelPackages: Package[] = [
       id: 39,
       title: "Delhi Historical Journey",
       location: "Delhi, India",
-      image: "/Domestic/Delhi/pic1.jpg?height=600&width=800",
+      image: "/Domestic/Delhi/pic1.webp?height=600&width=800",
       duration: "3 Days / 2 Nights",
       groupSize: "Up to 10 people",
       description:
@@ -755,48 +736,10 @@ export const travelPackages: Package[] = [
       featured: true,
     },
     {
-      id: 40,
-      title: "Ayodhya Spiritual Journey",
-      location: "Ayodhya, India",
-      image: "/Domestic/Ayodhya/pic1.jpg?height=600&width=800",
-      duration: "3 Days / 2 Nights",
-      groupSize: "Up to 10 people",
-      description:
-        "Embark on a spiritual journey to Ayodhya, the birthplace of Lord Rama. Explore the rich history, sacred temples, and serene ghats of this holy city.",
-      highlights: [
-        "Visit to Ram Janmabhoomi Temple",
-        "Explore Hanuman Garhi and Kanak Bhawan",
-        "Evening Aarti at Saryu River",
-        "Stroll through the vibrant local markets",
-        "Experience the spiritual ambiance of Ayodhya",
-      ],
-      category: "domestic",
-      featured: true,
-    },
-    {
-      id: 41,
-      title: "Prayagraj Spiritual Retreat",
-      location: "Prayagraj, India",
-      image: "/Domestic/Prayagraj/pic1.jpg?height=600&width=800",
-      duration: "3 Days / 2 Nights",
-      groupSize: "Up to 10 people",
-      description:
-        "Immerse yourself in the spiritual and cultural heritage of Prayagraj, the city of sacred confluence. Explore ancient temples, serene ghats, and the vibrant Kumbh Mela grounds.",
-      highlights: [
-        "Visit to Triveni Sangam, the confluence of three sacred rivers",
-        "Explore the historic Allahabad Fort",
-        "Visit to Anand Bhavan, the ancestral home of the Nehru family",
-        "Evening Aarti at Sangam Ghat",
-        "Experience the spiritual ambiance of the Kumbh Mela grounds (seasonal)",
-      ],
-      category: "domestic",
-      featured: true,
-    },
-    {
       id: 42,
       title: "Haridwar and Rishikesh Spiritual Retreat",
       location: "Haridwar & Rishikesh, India",
-      image: "/Domestic/HaridwarRishikesh/pic1.jpg?height=600&width=800",
+      image: "/Domestic/Haridwar Rishikesh/pic1.avif?height=600&width=800",
       duration: "4 Days / 3 Nights",
       groupSize: "Up to 10 people",
       description:
@@ -815,7 +758,7 @@ export const travelPackages: Package[] = [
       id: 43,
       title: "Germany Historical Tour",
       location: "Germany",
-      image: "/International/Germany/pic1.jpg?height=600&width=800",
+      image: "/International/Germany/pic1.webp?height=600&width=800",
       duration: "7 Days / 6 Nights",
       groupSize: "Up to 10 people",
       description:
@@ -834,7 +777,7 @@ export const travelPackages: Package[] = [
         id: 44,
         title: "Swiss Alpine Adventure",
         location: "Switzerland",
-        image: "/International/Switzerland/pic1.jpg?height=600&width=800",
+        image: "/International/Switzerland/pic2.jpeg?height=600&width=800",
         duration: "8 Days / 7 Nights",
         groupSize: "Up to 8 people",
         description:
@@ -891,7 +834,7 @@ export const travelPackages: Package[] = [
         id: 47,
         title: "Rajasthan Desert Majesty",
         location: "Rajasthan, India",
-        image: "/Domestic/Rajasthan/desert.jpg?height=600&width=800",
+        image: "/Domestic/Rajasthan/pic2.jpeg?height=600&width=800",
         duration: "9 Days / 8 Nights",
         groupSize: "Up to 12 people",
         description:
@@ -910,7 +853,7 @@ export const travelPackages: Package[] = [
         id: 48,
         title: "Himalayan Serenity Retreat",
         location: "Uttarakhand, India",
-        image: "/Domestic/Himalaya/retreat.jpg?height=600&width=800",
+        image: "/Domestic/Himalaya/pic2.webp?height=600&width=800",
         duration: "6 Days / 5 Nights",
         groupSize: "Up to 8 people",
         description:

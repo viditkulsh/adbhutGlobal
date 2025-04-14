@@ -1,7 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
+import { useEffect, useRef } from "react"
 import L, { LatLngTuple } from "leaflet"
 import "leaflet/dist/leaflet.css"
 
@@ -12,7 +11,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 })
 
-// Define service locations with explicit LatLngTuple type
+// Define service locations
 const serviceLocations: { city: string; coords: LatLngTuple }[] = [
   { city: "Bali", coords: [-8.3405, 115.0920] },
   { city: "Tokyo", coords: [35.6762, 139.6503] },
@@ -27,33 +26,39 @@ const serviceLocations: { city: string; coords: LatLngTuple }[] = [
   { city: "Moscow", coords: [55.7558, 37.6173] },
   { city: "Rome", coords: [41.9028, 12.4964] },
   { city: "Amsterdam", coords: [52.3676, 4.9041] },
-  { city: "Cape Town", coords: [-33.9249, 18.4241] }
+  { city: "Cape Town", coords: [-33.9249, 18.4241] },
 ]
 
-export default function InteractiveMap() {
-  const [isClient, setIsClient] = useState(false)
+const InteractiveMap = () => {
+  const mapRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    setIsClient(true) // Ensure the map is only rendered on the client side
+    if (!mapRef.current) return
+
+    // Reset Leaflet container ID to prevent double initialization
+    if (mapRef.current.innerHTML !== "") {
+      mapRef.current.innerHTML = "" // Clear before re-initializing
+    }
+
+    const map = L.map(mapRef.current).setView([20, 0], 2) // Centered globally
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; OpenStreetMap contributors',
+    }).addTo(map)
+
+    // Add markers for each location with tooltips
+    serviceLocations.forEach((location) => {
+      const marker = L.marker(location.coords).addTo(map)
+      marker.bindPopup(`<b>${location.city}</b>`) // Add popup with city name
+      marker.bindTooltip(location.city, { permanent: false, direction: "top" }) // Add tooltip on hover
+    })
+
+    return () => {
+      map.remove() // Cleanup
+    }
   }, [])
 
-  if (!isClient) {
-    return null // Render nothing on the server
-  }
-
-  return (
-    <div className="relative w-full h-[500px] z-0"> {/* Set z-0 to ensure it stays behind */}
-      <MapContainer center={[20, 0]} zoom={2} scrollWheelZoom={false} className="h-full w-full">
-        <TileLayer
-          attribution='&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {serviceLocations.map((loc, i) => (
-          <Marker key={i} position={loc.coords}>
-            <Popup>{loc.city}</Popup>
-          </Marker>
-        ))}
-      </MapContainer>
-    </div>
-  )
+  return <div ref={mapRef} id="map" className="w-full h-full" />
 }
+
+export default InteractiveMap
