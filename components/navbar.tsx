@@ -53,9 +53,12 @@ export default function Navbar() {
               height={40} // Adjust height as needed
               className="h-10 w-10 object-contain" // Tailwind classes for styling
             />
-            <div className="flex flex-col">
-              <span className="text-2xl font-bold text-primary">Adbhut Global</span>
-              <span className="text-sm text-blue-primary">Tour and Travel Services</span>
+            <div className="flex flex-col leading-tight">
+              <span className="text-2xl font-bold">
+                <span className="text-red-500">Adbhut</span> {/* Adbhut in red */}
+                <span className="text-[#0070f3]"> Global</span> {/* Global in blue */}
+              </span>
+              <span className="text-sm text-[#0070f3]">Tour and Travel Services</span> {/* Tour and Travel Services in blue */}
             </div>
           </Link>
 
