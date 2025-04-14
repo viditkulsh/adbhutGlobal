@@ -1,24 +1,33 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Clock, MapPin, Users, Star, ChevronDown, ChevronUp } from "lucide-react"
-import { travelPackages, Package } from "./travel_dest"
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Clock, MapPin, Users, Star, ChevronDown, ChevronUp } from "lucide-react";
+import { travelPackages, Package } from "./travel_dest";
+import Link from "next/link";
 
 export default function PackagesPage() {
-  const [activeTab, setActiveTab] = useState("all")
-  const [expandedPackage, setExpandedPackage] = useState<number | null>(null)
+  const [activeTab, setActiveTab] = useState("all");
+  const [expandedPackage, setExpandedPackage] = useState<number | null>(null);
+  const searchParams = useSearchParams();
+  const destination = searchParams.get("destination");
 
   const togglePackageDetails = (id: number) => {
-    setExpandedPackage(expandedPackage === id ? null : id)
-  }
+    setExpandedPackage(expandedPackage === id ? null : id);
+  };
 
+  // Filter packages based on the destination query parameter
   const filteredPackages =
-    activeTab === "all" ? travelPackages : travelPackages.filter((pkg) => pkg.category === activeTab)
+    destination
+      ? travelPackages.filter((pkg) => pkg.location.toLowerCase().includes(destination.toLowerCase()))
+      : activeTab === "all"
+      ? travelPackages
+      : travelPackages.filter((pkg) => pkg.category === activeTab);
 
   return (
     <>
@@ -34,15 +43,17 @@ export default function PackagesPage() {
 
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="mb-8">
-              <div className="flex justify-center">
-                <TabsList>
-                  <TabsTrigger value="all">All Packages</TabsTrigger>
-                  <TabsTrigger value="international">International</TabsTrigger>
-                  <TabsTrigger value="domestic">Domestic</TabsTrigger>
-                </TabsList>
-              </div>
-            </Tabs>
+            {!destination && (
+              <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="mb-8">
+                <div className="flex justify-center">
+                  <TabsList>
+                    <TabsTrigger value="all">All Packages</TabsTrigger>
+                    <TabsTrigger value="international">International</TabsTrigger>
+                    <TabsTrigger value="domestic">Domestic</TabsTrigger>
+                  </TabsList>
+                </div>
+              </Tabs>
+            )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredPackages.map((pkg, index) => (
@@ -197,11 +208,13 @@ export default function PackagesPage() {
                       <span>Accommodation options for every budget</span>
                     </li>
                   </ul>
-                  <Button>Request Custom Package</Button>
+                  <Link href="/contact">
+                    <Button>Request Custom Package</Button>
+                  </Link>
                 </div>
                 <div className="relative h-64 rounded-lg overflow-hidden">
                   <img
-                    src="/placeholder.svg?height=600&width=400"
+                    src="/Company/drm_vac.jpeg?height=600&width=400"
                     alt="Custom Travel Package"
                     className="w-full h-full object-cover"
                   />
@@ -212,5 +225,5 @@ export default function PackagesPage() {
         </section>
       </div>
     </>
-  )
+  );
 }

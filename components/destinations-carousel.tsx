@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 interface Destination {
   id: number
@@ -156,8 +157,14 @@ export default function DestinationsCarousel() {
                   <div className="p-4">
                     <h3 className="text-xl font-bold">{destination.name}</h3>
                     <p className="text-muted-foreground">{destination.location}</p>
-                    <Button variant="link" className="mt-2 p-0 h-auto">
-                      View Packages
+                    <Button
+                      variant="link"
+                      className="mt-2 p-0 h-auto"
+                      asChild
+                    >
+                      <Link href={`/packages?destination=${encodeURIComponent(destination.name)}`}>
+                        View Packages
+                      </Link>
                     </Button>
                   </div>
                 </motion.div>

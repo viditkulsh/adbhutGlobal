@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { DatePicker } from "@/components/ui/date-picker"
 import CorporateForm from "@/components/corporate-form"
+import Link from "next/link"
 
 export default function ServicesPage() {
   const [showCorporateForm, setShowCorporateForm] = useState(false)
@@ -266,9 +267,9 @@ export default function ServicesPage() {
                   Our dedicated corporate travel specialists work closely with your team to understand your specific
                   needs and preferences, providing personalized solutions that align with your business objectives.
                 </p>
-                <Button onClick={() => setShowCorporateForm(!showCorporateForm)}>
-                  Contact Our Corporate Team
-                </Button>
+                <Link href="/contact">
+                  <Button>Contact Our Corporate Team</Button>
+                </Link>
               </motion.div>
             </div>
           </div>

@@ -67,27 +67,27 @@ export default function Footer() {
             <h3 className="text-xl font-bold mb-4">Popular Destinations</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/packages" className="hover:text-white/80 transition-colors">
+                <Link href="/packages?destination=Bali" className="hover:text-white/80 transition-colors">
                   Bali, Indonesia
                 </Link>
               </li>
               <li>
-                <Link href="/packages" className="hover:text-white/80 transition-colors">
+                <Link href="/packages?destination=Tokyo" className="hover:text-white/80 transition-colors">
                   Tokyo, Japan
                 </Link>
               </li>
               <li>
-                <Link href="/packages" className="hover:text-white/80 transition-colors">
+                <Link href="/packages?destination=Dubai" className="hover:text-white/80 transition-colors">
                   Dubai, UAE
                 </Link>
               </li>
               <li>
-                <Link href="/packages" className="hover:text-white/80 transition-colors">
+                <Link href="/packages?destination=Paris" className="hover:text-white/80 transition-colors">
                   Paris, France
                 </Link>
               </li>
               <li>
-                <Link href="/packages" className="hover:text-white/80 transition-colors">
+                <Link href="/packages?destination=Goa" className="hover:text-white/80 transition-colors">
                   Goa, India
                 </Link>
               </li>
