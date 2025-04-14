@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -11,7 +11,7 @@ import { Clock, MapPin, Users, Star, ChevronDown, ChevronUp } from "lucide-react
 import { travelPackages, Package } from "./travel_dest";
 import Link from "next/link";
 
-export default function PackagesPage() {
+const PackagesPage = () => {
   const [activeTab, setActiveTab] = useState("all");
   const [expandedPackage, setExpandedPackage] = useState<number | null>(null);
   const searchParams = useSearchParams();
@@ -242,5 +242,13 @@ export default function PackagesPage() {
         </section>
       </div>
     </>
+  );
+};
+
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PackagesPage />
+    </Suspense>
   );
 }
