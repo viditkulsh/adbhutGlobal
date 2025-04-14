@@ -132,6 +132,23 @@ export default function PackagesPage() {
                 </motion.div>
               ))}
             </div>
+
+            {/* Add the "Show All Packages" button */}
+            {destination && (
+              <div className="flex justify-center mt-8">
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    const params = new URLSearchParams(window.location.search);
+                    params.delete("destination");
+                    window.history.replaceState({}, "", `${window.location.pathname}?${params.toString()}`);
+                    setActiveTab("all");
+                  }}
+                >
+                  Show All Packages
+                </Button>
+              </div>
+            )}
           </div>
         </section>
 
