@@ -48,7 +48,7 @@ export default function Navbar() {
           />
           <div className="flex flex-col leading-tight">
             <span className="text-2xl font-bold">
-              <span className="text-red-500">Adbhut</span>
+              <span className="text-[#DA3521]">Adbhut</span>
               <span className="text-[#0070f3]"> Global</span>
             </span>
             <span className="text-sm text-[#0070f3]">Tour and Travel Services</span>
