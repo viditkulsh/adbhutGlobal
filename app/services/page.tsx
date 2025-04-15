@@ -309,9 +309,6 @@ export default function ServicesPage() {
                     Organized a 3-day conference for 500+ attendees with international speakers, including venue
                     selection, accommodation, transportation, and event management.
                   </p>
-                  <Button variant="link" className="p-0 h-auto">
-                    Read Case Study
-                  </Button>
                 </CardContent>
               </Card>
 
@@ -332,9 +329,6 @@ export default function ServicesPage() {
                     Designed and executed a luxury incentive trip to Bali for 50 top-performing sales representatives,
                     including custom activities and team-building events.
                   </p>
-                  <Button variant="link" className="p-0 h-auto">
-                    Read Case Study
-                  </Button>
                 </CardContent>
               </Card>
 
@@ -355,9 +349,6 @@ export default function ServicesPage() {
                     Managed a high-profile product launch exhibition attended by media, industry leaders, and VIP
                     clients, coordinating all logistics and promotional activities.
                   </p>
-                  <Button variant="link" className="p-0 h-auto">
-                    Read Case Study
-                  </Button>
                 </CardContent>
               </Card>
             </div>
