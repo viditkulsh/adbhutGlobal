@@ -17,7 +17,6 @@ export const metadata: Metadata = {
   title: "Adbhut Global Tour and Travel Services",
   description:
     "Unforgettable journeys await you with Adbhut Global Tour and Travel Services. Explore international and domestic travel packages, flight booking services, and MICE solutions.",
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -27,6 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <title>Adbhut Global Tour and Travel Services</title>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+      </head>
       <body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable)}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
           <Navbar />
@@ -37,7 +40,5 @@ export default function RootLayout({
     </html>
   )
 }
-
-
 
 import './globals.css'
