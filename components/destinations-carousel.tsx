@@ -75,7 +75,7 @@ const destinations: Destination[] = [
     id: 9,
     name: "Rome",
     location: "Italy",
-    image: "/International/Rome/pic2.avif?height=600&width=800",
+    image: "/International/Malaysia/pic3.jpg?height=600&width=800",
     price: "price",
   },
 ]
