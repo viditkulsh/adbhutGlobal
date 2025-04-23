@@ -40,24 +40,23 @@ export default function ContactPage() {
     e.preventDefault()
   
     // Send form data using EmailJS
-    emailjs
-      .send(
-        "global_adbhut_mail", // Replace with your EmailJS Service ID
-        "Message_Recieved_Confirm", // Replace with your EmailJS Template ID
+    emailjs.send(
+        "adbhut_global_enquiries", // Service ID
+        "query_to_malik", // Template ID 2
         formData, // Form data to send
-        "q5ZT1q-4lvQ36KIa0" // Replace with your EmailJS Public Key
+        "tLXQ_axS__SXWoCa3" // Public Key
       )
       .then(
         (response) => {
           console.log("Email sent successfully (Template 1):", response);
   
-          // Send form data using the second template
-          return emailjs.send(
-            "global_adbhut_mail", // Service ID
-            "query_to_malik", // Template ID 2
-            formData, // Form data to send
-            "q5ZT1q-4lvQ36KIa0" // Public Key
-          );
+          // // Send form data using the second template
+          // return emailjs.send(
+          //   "adbhut_global_enquiries", // Replace with your EmailJS Service ID
+          //   "Message_Recieved_Confirm", // Replace with your EmailJS Template ID
+          //   formData, // Form data to send
+          //   "tLXQ_axS__SXWoCa3" // Replace with your EmailJS Public Key
+          // );
         }
       )
       .then(
@@ -162,13 +161,18 @@ export default function ContactPage() {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="+91 1234567890"
+                        required
                       />
                     </div>
                     <div>
                       <label htmlFor="subject" className="block text-sm font-medium mb-1">
                         Subject
                       </label>
-                      <Select value={formData.subject} onValueChange={(value) => handleSelectChange("subject", value)}>
+                      <Select
+                        value={formData.subject}
+                        onValueChange={(value) => handleSelectChange("subject", value)}
+                        required
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="Select a subject" />
                         </SelectTrigger>
