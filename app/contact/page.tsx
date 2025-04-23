@@ -177,11 +177,11 @@ export default function ContactPage() {
                           <SelectValue placeholder="Select a subject" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="general">General Inquiry</SelectItem>
-                          <SelectItem value="booking">Package Booking</SelectItem>
-                          <SelectItem value="custom">Custom Travel Plan</SelectItem>
-                          <SelectItem value="corporate">Corporate Travel</SelectItem>
-                          <SelectItem value="feedback">Feedback</SelectItem>
+                          <SelectItem value="General-Inquiry">General Inquiry</SelectItem>
+                          <SelectItem value="Package-Booking">Package Booking</SelectItem>
+                          <SelectItem value="Custom-Travel-Plan">Custom Travel Plan</SelectItem>
+                          <SelectItem value="Corporate-Travel">Corporate Travel</SelectItem>
+                          <SelectItem value="Feedback">Feedback</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
