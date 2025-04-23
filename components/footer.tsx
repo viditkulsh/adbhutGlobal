@@ -103,11 +103,23 @@ export default function Footer() {
               </li>
               <li className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 flex-shrink-0" />
-                <span>+91 7290954561</span>
+                <span>
+                  +91 7290954561
+                  <br />
+                  +91 9211434561
+                </span>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 flex-shrink-0" />
-                <span>info@adbhutglobal.com</span>
+                <span>
+                  <a href="mailto:info@adbhutglobal.com" className="hover:underline">
+                    info@adbhutglobal.com
+                  </a>
+                  <br />
+                  <a href="mailto:adbhutglobal@gmail.com" className="hover:underline">
+                    adbhutglobal@gmail.com
+                  </a>
+                </span>
               </li>
             </ul>
           </div>

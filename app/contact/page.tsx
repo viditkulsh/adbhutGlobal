@@ -253,6 +253,8 @@ export default function ContactPage() {
                             <h3 className="font-bold">Phone</h3>
                             <p className="text-muted-foreground">
                               Mobile: +91 7290954561
+                              <br />
+                              Mobile: +91 9211434561
                             </p>
                           </div>
                         </div>
@@ -268,7 +270,13 @@ export default function ContactPage() {
                           <div>
                             <h3 className="font-bold">Email</h3>
                             <p className="text-muted-foreground">
-                              info@adbhutglobal.com
+                              <a href="mailto:info@adbhutglobal.com" className="hover:underline">
+                                info@adbhutglobal.com
+                              </a>
+                              <br />
+                              <a href="mailto:adbhutglobal@gmail.com" className="hover:underline">
+                                adbhutglobal@gmail.com
+                              </a>
                             </p>
                           </div>
                         </div>
