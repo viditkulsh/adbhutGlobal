@@ -4,6 +4,7 @@ import dynamic from "next/dynamic"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { MapPin } from "lucide-react"
+import { useEffect } from "react"
 import ClientOnly from "@/components/client_only" // Import the ClientOnly component
 
 // Dynamically import the Leaflet map to avoid SSR issues
@@ -12,6 +13,14 @@ const InteractiveMap = dynamic(() => import("@/components/interactive_map"), {
 })
 
 export default function AboutPage() {
+  // Set document title and meta description for SEO
+  useEffect(() => {
+    document.title = 'About Us - Adbhut Global Tour and Travel Services'
+    const metaDescription = document.querySelector('meta[name="description"]')
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Learn about Adbhut Global Tour and Travel Services - your trusted travel partner since 2010. Discover our journey, mission, and commitment to providing exceptional travel experiences across India and internationally.')
+    }
+  }, [])
   const timelineItems = [
     {
       year: "2010",

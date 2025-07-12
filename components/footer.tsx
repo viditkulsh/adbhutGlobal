@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Facebook, Twitter, Instagram, Youtube, MapPin, Phone, Mail } from "lucide-react"
+import SocialMediaLinks from "./social-media-links"
 
 export default function Footer() {
   return (
@@ -12,24 +13,7 @@ export default function Footer() {
               Unforgettable journeys await you with our expert travel services. Explore the world with confidence and
               comfort.
             </p>
-            <div className="flex space-x-4">
-              <Link href="#" className="hover:text-white/80 transition-colors">
-                <Facebook className="h-5 w-5" />
-                <span className="sr-only">Facebook</span>
-              </Link>
-              <Link href="#" className="hover:text-white/80 transition-colors">
-                <Twitter className="h-5 w-5" />
-                <span className="sr-only">Twitter</span>
-              </Link>
-              <Link href="#" className="hover:text-white/80 transition-colors">
-                <Instagram className="h-5 w-5" />
-                <span className="sr-only">Instagram</span>
-              </Link>
-              <Link href="#" className="hover:text-white/80 transition-colors">
-                <Youtube className="h-5 w-5" />
-                <span className="sr-only">YouTube</span>
-              </Link>
-            </div>
+            <SocialMediaLinks />
           </div>
 
           <div>

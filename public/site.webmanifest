@@ -1,0 +1,30 @@
+{
+  "name": "Adbhut Global Tour and Travel Services",
+  "short_name": "Adbhut Global",
+  "description": "Discover unforgettable travel experiences with Adbhut Global Tour and Travel Services",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e40af",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/logo_transparent.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo_transparent.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["travel", "business", "lifestyle"],
+  "lang": "en-US",
+  "dir": "ltr"
+}
