@@ -14,7 +14,7 @@ interface SEOHeadProps {
 export default function SEOHead({
   title = 'Adbhut Global Tour and Travel Services',
   description = 'Discover unforgettable travel experiences with Adbhut Global Tour and Travel Services.',
-  keywords = 'travel, tour, packages, flight booking, international, domestic',
+  keywords = 'travel, tour, packages, event experiences, international, domestic',
   canonical,
   ogImage = '/logo_transparent.png',
   ogType = 'website',

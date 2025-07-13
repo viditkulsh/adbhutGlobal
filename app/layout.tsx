@@ -17,10 +17,10 @@ const fontSans = FontSans({
 })
 
 export const metadata: Metadata = {
-  title: "Adbhut Global Tour and Travel Services - Best Travel Packages & Flight Booking",
+  title: "Adbhut Global Tour and Travel Services - Best Travel Packages & MICE Solutions",
   description:
-    "Discover unforgettable travel experiences with Adbhut Global Tour and Travel Services. Book international and domestic travel packages, flight bookings, MICE solutions, and corporate travel services at competitive prices.",
-  keywords: "travel packages, flight booking, international travel, domestic travel, MICE services, corporate travel, tour packages, vacation packages, travel agency, tourism services",
+    "Discover unforgettable travel experiences with Adbhut Global Tour and Travel Services. Book international and domestic travel packages, MICE solutions, and corporate travel services at competitive prices.",
+  keywords: "travel packages, international travel, domestic travel, MICE services, corporate travel, tour packages, vacation packages, travel agency, tourism services",
   authors: [{ name: "Adbhut Global Tour and Travel Services" }],
   creator: "Adbhut Global Tour and Travel Services",
   publisher: "Adbhut Global Tour and Travel Services",
@@ -48,8 +48,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://adbhutglobal.com',
-    title: 'Adbhut Global Tour and Travel Services - Best Travel Packages & Flight Booking',
-    description: 'Discover unforgettable travel experiences with Adbhut Global Tour and Travel Services. Book international and domestic travel packages, flight bookings, MICE solutions, and corporate travel services at competitive prices.',
+    title: 'Adbhut Global Tour and Travel Services - Best Travel Packages & MICE Solutions',
+    description: 'Discover unforgettable travel experiences with Adbhut Global Tour and Travel Services. Book international and domestic travel packages, MICE solutions, and corporate travel services at competitive prices.',
     siteName: 'Adbhut Global Tour and Travel Services',
     images: [
       {
@@ -62,8 +62,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Adbhut Global Tour and Travel Services - Best Travel Packages & Flight Booking',
-    description: 'Discover unforgettable travel experiences with Adbhut Global Tour and Travel Services. Book international and domestic travel packages, flight bookings, MICE solutions, and corporate travel services at competitive prices.',
+    title: 'Adbhut Global Tour and Travel Services - Best Travel Packages & MICE Solutions',
+    description: 'Discover unforgettable travel experiences with Adbhut Global Tour and Travel Services. Book international and domestic travel packages, MICE solutions, and corporate travel services at competitive prices.',
     images: ['/logo_transparent.png'],
     creator: '@adbhutglobal',
   },
@@ -93,7 +93,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "TravelAgency",
               "name": "Adbhut Global Tour and Travel Services",
-              "description": "Professional travel agency offering international and domestic travel packages, flight booking services, and MICE solutions.",
+              "description": "Professional travel agency offering international and domestic travel packages and MICE solutions.",
               "url": "https://adbhutglobal.com",
               "logo": "https://adbhutglobal.com/logo_transparent.png",
               "image": "https://adbhutglobal.com/logo_transparent.png",
@@ -140,13 +140,6 @@ export default function RootLayout({
                     "@type": "Offer",
                     "itemOffered": {
                       "@type": "Service",
-                      "name": "Flight Booking Services"
-                    }
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
                       "name": "MICE Solutions"
                     }
                   }
@@ -159,7 +152,6 @@ export default function RootLayout({
         {/* Security Headers */}
         <meta httpEquiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains" />
         <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-        <meta httpEquiv="X-Frame-Options" content="DENY" />
         <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
         
         {/* Preconnect to external domains */}
@@ -210,7 +202,6 @@ export default function RootLayout({
             services={[
               "International Travel Packages",
               "Domestic Travel Packages",
-              "Flight Booking Services",
               "MICE Solutions",
               "Corporate Travel Services",
             ]}

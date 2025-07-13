@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 interface OrganizationSchemaProps {
   name: string
@@ -31,7 +31,15 @@ export default function OrganizationSchema({
   sameAs,
   services,
 }: OrganizationSchemaProps) {
+  const [mounted, setMounted] = useState(false)
+
   useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!mounted) return
+
     const script = document.createElement('script')
     script.type = 'application/ld+json'
     script.innerHTML = JSON.stringify({
@@ -41,7 +49,7 @@ export default function OrganizationSchema({
       url,
       logo,
       image: logo,
-      description: 'Professional travel agency offering international and domestic travel packages, flight booking services, and MICE solutions.',
+      description: 'Professional travel agency offering international and domestic travel packages, event experiences, and MICE solutions.',
       ...(contactPoint && {
         contactPoint: {
           '@type': 'ContactPoint',
@@ -82,7 +90,7 @@ export default function OrganizationSchema({
         document.head.removeChild(script)
       }
     }
-  }, [name, url, logo, contactPoint, address, sameAs, services])
+  }, [name, url, logo, contactPoint, address, sameAs, services, mounted])
 
   return null
 }

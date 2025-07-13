@@ -76,7 +76,7 @@ export default function AboutPage() {
                 </p>
                 <p className="mb-4">
                   What started as a small team of passionate travelers has grown into a full-service travel company with
-                  expertise in international and domestic tourism, flight bookings, and corporate MICE solutions.
+                  expertise in international and domestic tourism, tour packages, and corporate MICE solutions.
                 </p>
                 <p>
                   Our commitment to excellence, attention to detail, and personalized service has made us a trusted name

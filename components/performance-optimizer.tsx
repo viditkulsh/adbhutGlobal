@@ -1,9 +1,17 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function PerformanceOptimizer() {
+  const [mounted, setMounted] = useState(false)
+
   useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!mounted) return
+
     // Prefetch important routes
     const prefetchRoutes = ['/about', '/services', '/packages', '/contact']
     
@@ -33,7 +41,7 @@ export default function PerformanceOptimizer() {
     return () => {
       imageObserver.disconnect()
     }
-  }, [])
+  }, [mounted])
 
   return null
 }

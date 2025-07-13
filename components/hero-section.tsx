@@ -72,7 +72,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          Best Travel Packages & Flight Booking Services
+          Best Travel Packages & Tour Services
         </motion.h1>
         <motion.p
           className="text-lg md:text-xl mb-8 max-w-2xl"
@@ -100,7 +100,7 @@ export default function HeroSection() {
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-primary font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105"
+              className="hero-outline-btn border-2 border-white/80 text-white bg-transparent backdrop-blur-sm hover:bg-white hover:text-primary font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105"
             >
               Get Free Quote
             </Button>

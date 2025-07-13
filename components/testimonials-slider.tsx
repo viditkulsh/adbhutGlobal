@@ -22,7 +22,7 @@ const testimonials: Testimonial[] = [
     location: "New York, USA",
     avatar: "/placeholder.svg?height=100&width=100",
     rating: 5,
-    text: "Our trip to Bali was absolutely perfect! Adbhut Global took care of every detail, from flights to accommodations to local tours. The itinerary was well-balanced with both adventure and relaxation. I can't wait to book my next vacation with them!",
+    text: "Our trip to Bali was absolutely perfect! Adbhut Global took care of every detail, from accommodations to local tours and transportation. The itinerary was well-balanced with both adventure and relaxation. I can't wait to book my next vacation with them!",
   },
   {
     id: 2,

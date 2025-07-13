@@ -16,7 +16,7 @@ export default function NotFound() {
         
         <div className="space-y-4 mb-8">
           <Link href="/">
-            <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+            <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
               <Home className="mr-2 h-4 w-4" />
               Back to Home
             </Button>

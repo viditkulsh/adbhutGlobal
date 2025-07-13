@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
 // Google Analytics
@@ -12,17 +12,26 @@ declare global {
 
 export default function Analytics() {
   const pathname = usePathname()
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!mounted) return
+
     // Initialize Google Analytics
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('config', 'GA_MEASUREMENT_ID', {
         page_path: pathname,
       })
     }
-  }, [pathname])
+  }, [pathname, mounted])
 
   useEffect(() => {
+    if (!mounted) return
+
     // Track page view
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'page_view', {
@@ -30,7 +39,7 @@ export default function Analytics() {
         page_title: document.title,
       })
     }
-  }, [pathname])
+  }, [pathname, mounted])
 
   return null
 }

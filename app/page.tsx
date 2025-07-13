@@ -6,15 +6,15 @@ import TestimonialsSlider from "@/components/testimonials-slider"
 import NewsletterSection from "@/components/newsletter-section"
 
 export const metadata: Metadata = {
-  title: 'Best Travel Packages & Flight Booking Services - Adbhut Global',
-  description: 'Discover amazing travel packages, international and domestic tours, flight booking services, and MICE solutions with Adbhut Global Tour and Travel Services. Book your dream vacation today!',
-  keywords: 'travel packages, flight booking, international tours, domestic tours, vacation packages, travel deals, MICE services, corporate travel, holiday packages, tour operators',
+  title: 'Best Travel Packages & Tour Services - Adbhut Global',
+  description: 'Discover amazing travel packages, international and domestic tours, and MICE solutions with Adbhut Global Tour and Travel Services. Book your dream vacation today!',
+  keywords: 'travel packages, international tours, domestic tours, vacation packages, travel deals, MICE services, corporate travel, holiday packages, tour operators',
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'Best Travel Packages & Flight Booking Services - Adbhut Global',
-    description: 'Discover amazing travel packages, international and domestic tours, flight booking services, and MICE solutions with Adbhut Global Tour and Travel Services. Book your dream vacation today!',
+    title: 'Best Travel Packages & Tour Services - Adbhut Global',
+    description: 'Discover amazing travel packages, international and domestic tours, and MICE solutions with Adbhut Global Tour and Travel Services. Book your dream vacation today!',
     url: 'https://adbhutglobal.com',
     images: [
       {

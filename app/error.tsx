@@ -30,7 +30,7 @@ export default function Error({
         <div className="space-y-4">
           <Button
             onClick={reset}
-            className="w-full bg-red-600 hover:bg-red-700 text-white"
+            className="w-full bg-destructive hover:bg-destructive/90 text-destructive-foreground"
           >
             Try Again
           </Button>

@@ -260,7 +260,7 @@ export default function ServicesPage() {
                   ensuring efficiency, cost-effectiveness, and comfort for your team.
                 </p>
                 <p className="mb-4">
-                  From booking flights and accommodations to arranging ground transportation and managing travel
+                  From booking accommodations to arranging ground transportation and managing travel
                   policies, we handle every aspect of your corporate travel requirements.
                 </p>
                 <p className="mb-6">

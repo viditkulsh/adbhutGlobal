@@ -1,7 +1,16 @@
+'use client'
+
+import { useEffect, useState } from 'react'
 import { Facebook, Instagram, Twitter, Linkedin, Youtube } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export default function SocialMediaLinks() {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const socialLinks = [
     {
       name: 'Facebook',
@@ -34,6 +43,10 @@ export default function SocialMediaLinks() {
       color: 'hover:text-red-600',
     },
   ]
+
+  if (!mounted) {
+    return null
+  }
 
   return (
     <div className="flex space-x-4">
