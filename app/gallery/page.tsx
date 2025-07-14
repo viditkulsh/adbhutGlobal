@@ -6,6 +6,7 @@ import { X, ChevronLeft, ChevronRight, Download, Share2, Camera, MapPin, Calenda
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
+import Image from "next/image"
 
 // Generate array of all gallery images
 const generateGalleryImages = () => {
@@ -206,12 +207,17 @@ export default function GalleryPage() {
                       onClick={() => openLightbox(image, index)}
                     >
                       <CardContent className="p-0 relative">
-                        <div className="relative overflow-hidden">
-                          <img
+                        <div className="relative overflow-hidden aspect-[4/3]">
+                          <Image
                             src={image.src}
                             alt={image.alt}
-                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                            loading="lazy"
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                            priority={index < 8}
+                            loading={index < 8 ? "eager" : "lazy"}
+                            placeholder="blur"
+                            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
                           <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -292,11 +298,17 @@ export default function GalleryPage() {
                 </Button>
 
                 {/* Image */}
-                <img
-                  src={selectedImage.src}
-                  alt={selectedImage.alt}
-                  className="max-w-full max-h-full object-contain rounded-lg"
-                />
+                <div className="relative max-w-4xl max-h-[80vh]">
+                  <Image
+                    src={selectedImage.src}
+                    alt={selectedImage.alt}
+                    width={1200}
+                    height={800}
+                    className="max-w-full max-h-full object-contain rounded-lg"
+                    priority={true}
+                    quality={90}
+                  />
+                </div>
 
                 {/* Image Info */}
                 <div className="absolute bottom-4 left-4 right-4 bg-black/50 backdrop-blur-sm rounded-lg p-4 text-white">

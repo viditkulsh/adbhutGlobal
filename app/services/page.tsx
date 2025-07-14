@@ -11,6 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { DatePicker } from "@/components/ui/date-picker"
 import CorporateForm from "@/components/corporate-form"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function ServicesPage() {
   const [showCorporateForm, setShowCorporateForm] = useState(false)
@@ -242,10 +243,15 @@ export default function ServicesPage() {
                 transition={{ duration: 0.5 }}
                 className="relative h-[400px] rounded-lg overflow-hidden"
               >
-                <img
-                  src="/Company/MICE.jpeg?height=800&width=600"
+                <Image
+                  src="/Company/MICE.jpeg"
                   alt="Corporate Event"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority={true}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                 />
               </motion.div>
 
@@ -298,11 +304,16 @@ export default function ServicesPage() {
                   <CardDescription>Global Technology Company</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="h-48 mb-4 bg-muted rounded-md overflow-hidden">
-                    <img
-                      src="Company/Networking.webp?height=400&width=600"
+                  <div className="h-48 mb-4 bg-muted rounded-md overflow-hidden relative">
+                    <Image
+                      src="/Company/Networking.webp"
                       alt="Tech Conference"
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      priority={false}
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                     />
                   </div>
                   <p className="text-sm text-muted-foreground mb-4">
@@ -318,11 +329,16 @@ export default function ServicesPage() {
                   <CardDescription>Pharmaceutical Corporation</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="h-48 mb-4 bg-muted rounded-md overflow-hidden">
-                    <img
-                      src="Company/Incentive.webp?height=400&width=600"
+                  <div className="h-48 mb-4 bg-muted rounded-md overflow-hidden relative">
+                    <Image
+                      src="/Company/Incentive.webp"
                       alt="Incentive Trip"
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      priority={false}
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                     />
                   </div>
                   <p className="text-sm text-muted-foreground mb-4">
@@ -338,11 +354,16 @@ export default function ServicesPage() {
                   <CardDescription>Automotive Manufacturer</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="h-48 mb-4 bg-muted rounded-md overflow-hidden">
-                    <img
-                      src="Company/Prod_launch.avif?height=400&width=600"
+                  <div className="h-48 mb-4 bg-muted rounded-md overflow-hidden relative">
+                    <Image
+                      src="/Company/Prod_launch.avif"
                       alt="Product Launch"
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      priority={false}
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                     />
                   </div>
                   <p className="text-sm text-muted-foreground mb-4">
