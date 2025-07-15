@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, ChevronLeft, ChevronRight, Download, Share2, Camera, MapPin, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 
@@ -50,34 +49,15 @@ const generateGalleryImages = () => {
 
 const galleryImages = generateGalleryImages()
 
-const categories = [
-  { id: 'all', label: 'All Photos', count: galleryImages.length },
-  { id: 'domestic', label: 'Domestic Tours', count: galleryImages.filter(img => img.category === 'domestic').length },
-  { id: 'international', label: 'International Tours', count: galleryImages.filter(img => img.category === 'international').length },
-  { id: 'corporate', label: 'Corporate Events', count: galleryImages.filter(img => img.category === 'corporate').length },
-  { id: 'adventure', label: 'Adventure Tours', count: galleryImages.filter(img => img.category === 'adventure').length },
-  { id: 'recent', label: 'Recent Tours', count: galleryImages.filter(img => img.category === 'recent').length },
-]
-
 export default function GalleryPage() {
-  const [selectedCategory, setSelectedCategory] = useState('all')
   const [selectedImage, setSelectedImage] = useState<any>(null)
   const [lightboxIndex, setLightboxIndex] = useState(0)
-  const [filteredImages, setFilteredImages] = useState(galleryImages)
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1000)
     return () => clearTimeout(timer)
   }, [])
-
-  useEffect(() => {
-    if (selectedCategory === 'all') {
-      setFilteredImages(galleryImages)
-    } else {
-      setFilteredImages(galleryImages.filter(img => img.category === selectedCategory))
-    }
-  }, [selectedCategory])
 
   const openLightbox = (image: any, index: number) => {
     setSelectedImage(image)
@@ -89,13 +69,13 @@ export default function GalleryPage() {
   }
 
   const navigateLightbox = (direction: 'prev' | 'next') => {
-    const currentIndex = filteredImages.findIndex(img => img.id === selectedImage?.id)
+    const currentIndex = galleryImages.findIndex(img => img.id === selectedImage?.id)
     let newIndex = direction === 'next' ? currentIndex + 1 : currentIndex - 1
     
-    if (newIndex >= filteredImages.length) newIndex = 0
-    if (newIndex < 0) newIndex = filteredImages.length - 1
+    if (newIndex >= galleryImages.length) newIndex = 0
+    if (newIndex < 0) newIndex = galleryImages.length - 1
     
-    setSelectedImage(filteredImages[newIndex])
+    setSelectedImage(galleryImages[newIndex])
     setLightboxIndex(newIndex)
   }
 
@@ -154,36 +134,6 @@ export default function GalleryPage() {
           </div>
         </div>
 
-        {/* Filter Section */}
-        <section className="py-8 bg-muted/50">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex flex-wrap justify-center gap-2 md:gap-4"
-            >
-              {categories.map((category) => (
-                <Button
-                  key={category.id}
-                  variant={selectedCategory === category.id ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedCategory(category.id)}
-                  className="relative"
-                >
-                  {category.label}
-                  <Badge 
-                    variant="secondary" 
-                    className="ml-2 text-xs"
-                  >
-                    {category.count}
-                  </Badge>
-                </Button>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
         {/* Gallery Grid */}
         <section className="py-12">
           <div className="container mx-auto px-4">
@@ -192,7 +142,7 @@ export default function GalleryPage() {
               className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4"
             >
               <AnimatePresence>
-                {filteredImages.map((image, index) => (
+                {galleryImages.map((image, index) => (
                   <motion.div
                     key={image.id}
                     layout
@@ -220,11 +170,6 @@ export default function GalleryPage() {
                             blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-                          <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <Badge variant="secondary" className="text-xs">
-                              {image.category}
-                            </Badge>
-                          </div>
                           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
                             <p className="text-white text-sm font-medium">{image.location}</p>
                             <p className="text-white/80 text-xs">{image.date}</p>
@@ -237,7 +182,7 @@ export default function GalleryPage() {
               </AnimatePresence>
             </motion.div>
 
-            {filteredImages.length === 0 && (
+            {galleryImages.length === 0 && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -245,7 +190,7 @@ export default function GalleryPage() {
               >
                 <Camera className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">No photos found</h3>
-                <p className="text-muted-foreground">Try selecting a different category</p>
+                <p className="text-muted-foreground">Unable to load gallery images</p>
               </motion.div>
             )}
           </div>
