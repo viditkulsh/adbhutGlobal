@@ -1,10 +1,3 @@
-let userConfig = undefined
-try {
-  userConfig = await import('./v0-user-next.config')
-} catch (e) {
-  // ignore error
-}
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
@@ -53,13 +46,7 @@ const nextConfig = {
   },
   // Add redirects to handle service worker requests
   async redirects() {
-    return [
-      {
-        source: '/sw-images.js',
-        destination: '/sw-images.js',
-        permanent: false,
-      },
-    ]
+    return []
   },
   experimental: {
     webpackBuildWorker: true,
@@ -67,28 +54,6 @@ const nextConfig = {
     parallelServerCompiles: true,
     optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
-}
-
-mergeConfig(nextConfig, userConfig)
-
-function mergeConfig(nextConfig, userConfig) {
-  if (!userConfig) {
-    return
-  }
-
-  for (const key in userConfig) {
-    if (
-      typeof nextConfig[key] === 'object' &&
-      !Array.isArray(nextConfig[key])
-    ) {
-      nextConfig[key] = {
-        ...nextConfig[key],
-        ...userConfig[key],
-      }
-    } else {
-      nextConfig[key] = userConfig[key]
-    }
-  }
 }
 
 export default nextConfig

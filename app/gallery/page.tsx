@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { X, ChevronLeft, ChevronRight, Download, Share2, Camera, MapPin, Calendar } from "lucide-react"
+import { X, ChevronLeft, ChevronRight, Download, Share2, Camera, MapPin, Calendar, Copy } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
@@ -59,13 +59,39 @@ export default function GalleryPage() {
     return () => clearTimeout(timer)
   }, [])
 
+  // Handle URL parameters for direct photo linking
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const photoId = urlParams.get('photo')
+    
+    if (photoId) {
+      const photoIdNum = parseInt(photoId)
+      const image = galleryImages.find(img => img.id === photoIdNum)
+      if (image) {
+        const index = galleryImages.findIndex(img => img.id === photoIdNum)
+        setSelectedImage(image)
+        setLightboxIndex(index)
+      }
+    }
+  }, [])
+
   const openLightbox = (image: any, index: number) => {
     setSelectedImage(image)
     setLightboxIndex(index)
+    
+    // Update URL with photo ID
+    const url = new URL(window.location.href)
+    url.searchParams.set('photo', image.id.toString())
+    window.history.pushState({}, '', url.toString())
   }
 
   const closeLightbox = () => {
     setSelectedImage(null)
+    
+    // Remove photo ID from URL
+    const url = new URL(window.location.href)
+    url.searchParams.delete('photo')
+    window.history.pushState({}, '', url.toString())
   }
 
   const navigateLightbox = (direction: 'prev' | 'next') => {
@@ -75,17 +101,58 @@ export default function GalleryPage() {
     if (newIndex >= galleryImages.length) newIndex = 0
     if (newIndex < 0) newIndex = galleryImages.length - 1
     
-    setSelectedImage(galleryImages[newIndex])
+    const newImage = galleryImages[newIndex]
+    setSelectedImage(newImage)
     setLightboxIndex(newIndex)
+    
+    // Update URL with new photo ID
+    const url = new URL(window.location.href)
+    url.searchParams.set('photo', newImage.id.toString())
+    window.history.pushState({}, '', url.toString())
   }
 
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: 'Adbhut Global Gallery',
-        text: 'Check out this amazing travel experience!',
-        url: window.location.href,
-      })
+  const handleCopyLink = async () => {
+    if (!selectedImage) return
+    
+    const shareUrl = `${window.location.origin}${window.location.pathname}?photo=${selectedImage.id}`
+    
+    try {
+      await navigator.clipboard.writeText(shareUrl)
+      // You might want to show a toast notification here
+      alert('Photo link copied to clipboard!')
+    } catch (error) {
+      console.error('Clipboard error:', error)
+    }
+  }
+
+  const handleShare = async () => {
+    if (!selectedImage) return
+    
+    const shareUrl = `${window.location.origin}${window.location.pathname}?photo=${selectedImage.id}`
+    const shareData = {
+      title: `${selectedImage.alt} - Adbhut Global Gallery`,
+      text: `Check out this amazing travel photo: ${selectedImage.alt} from ${selectedImage.location}`,
+      url: shareUrl,
+    }
+    
+    try {
+      if (navigator.share && navigator.canShare(shareData)) {
+        await navigator.share(shareData)
+      } else {
+        // Fallback: copy to clipboard
+        await navigator.clipboard.writeText(shareUrl)
+        // You might want to show a toast notification here
+        alert('Photo link copied to clipboard!')
+      }
+    } catch (error) {
+      console.error('Error sharing:', error)
+      // Fallback: copy to clipboard
+      try {
+        await navigator.clipboard.writeText(shareUrl)
+        alert('Photo link copied to clipboard!')
+      } catch (clipboardError) {
+        console.error('Clipboard error:', clipboardError)
+      }
     }
   }
 
@@ -261,8 +328,18 @@ export default function GalleryPage() {
                     <div>
                       <h3 className="font-semibold">{selectedImage.alt}</h3>
                       <p className="text-sm text-white/80">{selectedImage.location} • {selectedImage.date}</p>
+                      <p className="text-xs text-white/60">Photo ID: {selectedImage.id}</p>
                     </div>
                     <div className="flex gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="bg-white/10 border-white/20 text-white hover:bg-white/20"
+                        onClick={handleCopyLink}
+                      >
+                        <Copy className="h-4 w-4 mr-2" />
+                        Copy Link
+                      </Button>
                       <Button
                         variant="outline"
                         size="sm"
