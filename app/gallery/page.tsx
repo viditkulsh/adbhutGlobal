@@ -327,7 +327,7 @@ export default function GalleryPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <h3 className="font-semibold">{selectedImage.alt}</h3>
-                      <p className="text-sm text-white/80">{selectedImage.location} • {selectedImage.date}</p>
+                      {/*<p className="text-sm text-white/80">{selectedImage.location} • {selectedImage.date}</p>*/}
                       <p className="text-xs text-white/60">Photo ID: {selectedImage.id}</p>
                     </div>
                     <div className="flex gap-2">
