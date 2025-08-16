@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import HeroSection from "@/components/hero-section"
+import PackagesSection from "@/components/packages-section"
 import DestinationsCarousel from "@/components/destinations-carousel"
 import FeaturesSection from "@/components/features-section"
 import TestimonialsSlider from "@/components/testimonials-slider"
@@ -31,6 +32,7 @@ export default function Home() {
   return (
     <>
       <HeroSection />
+      <PackagesSection />
       <DestinationsCarousel />
       <FeaturesSection />
       {/* <TestimonialsSlider />  // Uncomment this line to enable the testimonials slider*/}
