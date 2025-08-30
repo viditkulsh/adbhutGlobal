@@ -7,9 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "sitemap": "next-sitemap",
-    "export": "next export"
+    "sitemap": "next-sitemap"
   },
+
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@emotion/is-prop-valid": "latest",
