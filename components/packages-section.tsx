@@ -31,6 +31,14 @@ const packages: Package[] = [
   },
   {
     id: 2,
+    name: "Dubai Explorer",
+    location: "UAE",
+    image: "/posters/Dubai_Package.jpg",
+    description: "Discover the luxury and adventure of the Middle East",
+    duration: "5 Days / 4 Nights",
+  },
+  {
+    id: 3,
     name: "Goa Beaches",
     location: "India",
     image: "/posters/Goa_Package.jpg",
@@ -38,12 +46,36 @@ const packages: Package[] = [
     duration: "4 Days / 3 Nights",
   },
   {
-    id: 3,
+    id: 4,
+    name: "Gujarat Heritage",
+    location: "India",
+    image: "/posters/Gujarat_Package.jpg",
+    description: "Explore rich culture, heritage sites, and traditional crafts",
+    duration: "6 Days / 5 Nights",
+  },
+  {
+    id: 5,
+    name: "Odisha Temples",
+    location: "India",
+    image: "/posters/Odisha_Package.jpg",
+    description: "Discover ancient temples and spiritual heritage",
+    duration: "5 Days / 4 Nights",
+  },
+  {
+    id: 6,
     name: "Thailand Explorer",
     location: "Thailand",
     image: "/posters/Thailand_Package.jpg",
     description: "Discover ancient temples, exotic cuisine, and tropical islands",
     duration: "7 Days / 6 Nights",
+  },
+  {
+    id: 7,
+    name: "Vietnam Adventure",
+    location: "Vietnam",
+    image: "/posters/Vietnam_Package.jpg",
+    description: "Experience historic beauty, culture, and stunning landscapes",
+    duration: "8 Days / 7 Nights",
   },
 ]
 
@@ -71,6 +103,10 @@ export default function PackagesSection() {
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? packages.length - 1 : prevIndex - 1))
+  }
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index)
   }
 
   const handlePosterClick = (packageItem: Package) => {
@@ -156,119 +192,81 @@ export default function PackagesSection() {
           </motion.p>
         </div>
 
-        {/* Desktop Grid - Full Posters */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-          {packages.map((packageItem, index) => (
+        {/* Slider */}
+        <div className="relative">
+          <motion.div className="overflow-hidden">
             <motion.div
-              key={packageItem.id}
-              className="cursor-pointer group"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05, y: -10 }}
-              onClick={() => handlePosterClick(packageItem)}
-            >
-              <div className="relative overflow-hidden rounded-lg shadow-xl h-[500px] bg-muted">
-                <Image
-                  src={packageItem.image}
-                  alt={packageItem.name}
-                  width={400}
-                  height={600}
-                  className="w-full h-full object-contain transition-all duration-500 group-hover:brightness-110 group-hover:contrast-110"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  priority={index < 2}
-                />
-                {/* Overlay on hover */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full">
-                    <p className="text-primary font-semibold">Click to Book</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Mobile Carousel - Full Posters */}
-        <div className="md:hidden relative">
-          <div className="overflow-hidden rounded-lg">
-            <motion.div
-              className="flex"
-              animate={{ x: -currentIndex * 100 + "%" }}
+              className="flex gap-6"
+              animate={{ x: -currentIndex * (300 + 24) }} // Card width + gap
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
               {packages.map((packageItem) => (
-                <div
+                <motion.div
                   key={packageItem.id}
-                  className="w-full flex-shrink-0 px-2"
+                  className="package-card min-w-[300px] bg-card rounded-lg overflow-hidden shadow-lg cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                  onClick={() => handlePosterClick(packageItem)}
                 >
-                  <div 
-                    className="cursor-pointer group relative h-[500px] bg-muted rounded-lg overflow-hidden"
-                    onClick={() => handlePosterClick(packageItem)}
-                  >
+                  <div className="relative h-80 overflow-hidden">
                     <Image
                       src={packageItem.image}
                       alt={packageItem.name}
-                      width={400}
-                      height={600}
-                      className="w-full h-full object-contain shadow-xl"
-                      sizes="100vw"
+                      width={300}
+                      height={320}
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                      sizes="300px"
                     />
-                    {/* Mobile overlay */}
-                    <div className="absolute inset-0 bg-black/0 group-active:bg-black/20 transition-all duration-200" />
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-center">
-                        <p className="text-primary font-semibold">Tap to Book</p>
+                    {/* Overlay on hover */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                      <div className="bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full">
+                        <p className="text-primary font-semibold">Click to Book</p>
                       </div>
                     </div>
                   </div>
-                </div>
+                  <div className="p-4">
+                    <h3 className="text-xl font-bold">{packageItem.name}</h3>
+                    <p className="text-muted-foreground">{packageItem.location}</p>
+                    <p className="text-sm text-muted-foreground mt-2">{packageItem.duration}</p>
+                  </div>
+                </motion.div>
               ))}
             </motion.div>
-          </div>
+          </motion.div>
 
-          {/* Mobile Navigation */}
-          {packages.length > 1 && (
-            <>
-              <Button
-                variant="outline"
-                size="icon"
-                className="absolute left-2 top-1/2 -translate-y-1/2 z-10 rounded-full bg-background/80 backdrop-blur-sm shadow-lg"
-                onClick={prevSlide}
-                aria-label="Previous package"
-              >
-                <ChevronLeft className="h-6 w-6" />
-              </Button>
+          {/* Navigation arrows */}
+          <Button
+            variant="outline"
+            size="icon"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 rounded-full bg-background/80 backdrop-blur-sm"
+            onClick={prevSlide}
+          >
+            <ChevronLeft className="h-6 w-6" />
+            <span className="sr-only">Previous</span>
+          </Button>
 
-              <Button
-                variant="outline"
-                size="icon"
-                className="absolute right-2 top-1/2 -translate-y-1/2 z-10 rounded-full bg-background/80 backdrop-blur-sm shadow-lg"
-                onClick={nextSlide}
-                aria-label="Next package"
-              >
-                <ChevronRight className="h-6 w-6" />
-              </Button>
-            </>
-          )}
+          <Button
+            variant="outline"
+            size="icon"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 rounded-full bg-background/80 backdrop-blur-sm"
+            onClick={nextSlide}
+          >
+            <ChevronRight className="h-6 w-6" />
+            <span className="sr-only">Next</span>
+          </Button>
+        </div>
 
-          {/* Mobile Pagination */}
-          {packages.length > 1 && (
-            <div className="flex justify-center mt-6">
-              {packages.map((_, index) => (
-                <button
-                  key={index}
-                  className={`h-3 w-3 rounded-full mx-1 transition-colors ${
-                    index === currentIndex ? "bg-primary" : "bg-muted-foreground/30"
-                  }`}
-                  onClick={() => setCurrentIndex(index)}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
-          )}
+        {/* Dots indicator */}
+        <div className="flex justify-center mt-8">
+          {packages.map((_, index) => (
+            <button
+              key={index}
+              className={`h-2 w-2 rounded-full mx-1 ${index === currentIndex ? "bg-primary" : "bg-muted"}`}
+              onClick={() => goToSlide(index)}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
 

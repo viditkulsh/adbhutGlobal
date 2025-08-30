@@ -140,7 +140,7 @@
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-/* Hero section outline button with proper dark mode support */
+/* Hero section buttons with proper dark mode support */
 .hero-outline-btn {
   border-color: rgba(255, 255, 255, 0.8);
   color: white;
@@ -165,3 +165,115 @@
   border-color: rgba(255, 255, 255, 0.9);
 }
 
+/* Hero secondary button (Explore All Packages) styling */
+.hero-secondary-btn {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+}
+
+.hero-secondary-btn:hover {
+  background-color: hsl(var(--secondary) / 0.9);
+  color: hsl(var(--secondary-foreground));
+}
+
+.dark .hero-secondary-btn {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+}
+
+.dark .hero-secondary-btn:hover {
+  background-color: hsl(var(--secondary) / 0.8);
+  color: hsl(var(--secondary-foreground));
+}
+
+/* Poster carousel animations and styling */
+.poster-carousel-overlay {
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.poster-carousel-content {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.poster-image {
+  transition: transform 0.3s ease;
+}
+
+.poster-card:hover .poster-image {
+  transform: scale(1.05);
+}
+
+.poster-carousel-nav-button {
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.poster-carousel-nav-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  scale: 1.1;
+}
+
+.poster-carousel-dots {
+  transition: all 0.3s ease;
+}
+
+.poster-carousel-progress {
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary-foreground)));
+}
+
+/* Welcome popup entrance animation */
+@keyframes welcomeSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.welcome-popup-content {
+  animation: welcomeSlideIn 0.6s ease-out;
+}
+
+/* Poster section grid animations */
+.poster-grid-item {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.poster-grid-item:hover {
+  transform: translateY(-8px) rotate(1deg);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Smooth loading animation for poster images */
+.poster-loading {
+  background: linear-gradient(90deg, #f0f0f0, #e0e0e0, #f0f0f0);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}

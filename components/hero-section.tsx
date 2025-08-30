@@ -93,7 +93,15 @@ export default function HeroSection() {
               size="lg"
               className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105"
             >
-              Explore Travel Packages
+              View Travel Packages
+            </Button>
+          </Link>
+          <Link href="/packages">
+            <Button
+              size="lg"
+              className="hero-secondary-btn font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105"
+            >
+              Explore All Packages
             </Button>
           </Link>
           <Link href="/contact">

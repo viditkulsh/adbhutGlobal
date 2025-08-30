@@ -5,6 +5,7 @@ import DestinationsCarousel from "@/components/destinations-carousel"
 import FeaturesSection from "@/components/features-section"
 import TestimonialsSlider from "@/components/testimonials-slider"
 import NewsletterSection from "@/components/newsletter-section"
+import WelcomePopup from "@/components/welcome-popup"
 
 export const metadata: Metadata = {
   title: 'Best Travel Packages & Tour Services - Adbhut Global',
@@ -31,6 +32,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
+      <WelcomePopup delay={3000} showOnce={true} />
       <HeroSection />
       <PackagesSection />
       <DestinationsCarousel />
