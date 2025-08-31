@@ -14,53 +14,69 @@ import {
 
 interface Poster {
   id: number
-  name: string
   image: string
   alt: string
+  title: string
+  location: string
+  packageId: number
 }
 
 const posters: Poster[] = [
   {
     id: 1,
-    name: "Bali Package",
     image: "/posters/Bali_Package.jpg",
-    alt: "Bali Travel Package - Explore the Island of Gods"
+    alt: "Bali Paradise Escape - Luxury Indonesia Travel Package",
+    title: "Bali Paradise Escape",
+    location: "Bali, Indonesia",
+    packageId: 1
   },
   {
     id: 2,
-    name: "Dubai Package",
     image: "/posters/Dubai_Package.jpg",
-    alt: "Dubai Travel Package - Experience Luxury and Adventure"
+    alt: "Dubai Desert Safari - Premium UAE Experience",
+    title: "Dubai Desert Safari",
+    location: "Dubai, UAE",
+    packageId: 2
   },
   {
     id: 3,
-    name: "Goa Package",
-    image: "/posters/Goa_Package.jpg",
-    alt: "Goa Travel Package - Beaches, Sun, and Fun"
+    image: "/posters/Thailand_Package.jpg",
+    alt: "Thailand Adventure - Exotic Southeast Asia Tour",
+    title: "Thailand Adventure",
+    location: "Bangkok & Phuket, Thailand",
+    packageId: 3
   },
   {
     id: 4,
-    name: "Gujarat Package",
-    image: "/posters/Gujarat_Package.jpg",
-    alt: "Gujarat Travel Package - Rich Culture and Heritage"
+    image: "/posters/Vietnam_Package.jpg",
+    alt: "Vietnam Discovery - Cultural Heritage Journey",
+    title: "Vietnam Discovery",
+    location: "Ho Chi Minh & Hanoi, Vietnam",
+    packageId: 4
   },
   {
     id: 5,
-    name: "Odisha Package",
-    image: "/posters/Odisha_Package.jpg",
-    alt: "Odisha Travel Package - Temple State of India"
+    image: "/posters/Goa_Package.jpg",
+    alt: "Goa Beach Paradise - India Coastal Getaway",
+    title: "Goa Beach Paradise",
+    location: "Goa, India",
+    packageId: 5
   },
   {
     id: 6,
-    name: "Thailand Package",
-    image: "/posters/Thailand_Package.jpg",
-    alt: "Thailand Travel Package - Land of Smiles"
+    image: "/posters/Gujarat_Package.jpg",
+    alt: "Gujarat Heritage Trail - Cultural India Experience",
+    title: "Gujarat Heritage Trail",
+    location: "Ahmedabad & Rajkot, Gujarat",
+    packageId: 6
   },
   {
     id: 7,
-    name: "Vietnam Package",
-    image: "/posters/Vietnam_Package.jpg",
-    alt: "Vietnam Travel Package - Historic Beauty and Culture"
+    image: "/posters/Odisha_Package.jpg",
+    alt: "Odisha Temple Tour - Spiritual India Journey",
+    title: "Odisha Temple Tour",
+    location: "Bhubaneswar & Puri, Odisha",
+    packageId: 7
   }
 ]
 
@@ -75,9 +91,11 @@ export default function PosterCarousel({
   isOpen, 
   onClose, 
   autoSlide = true, 
-  slideInterval = 4000 
+  slideInterval = 3000
 }: PosterCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({})
+  const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({})
 
   // Auto-slide functionality
   useEffect(() => {
@@ -108,133 +126,122 @@ export default function PosterCarousel({
     setCurrentIndex(index)
   }
 
+  const handlePosterClick = () => {
+    const currentPoster = posters[currentIndex]
+
+    // Close the popup first
+    onClose()
+
+    // Create URL with pre-filled form data for the specific destination
+    const contactUrl = new URL('/contact', window.location.origin)
+    contactUrl.searchParams.set('destination', currentPoster.title)
+    contactUrl.searchParams.set('location', currentPoster.location)
+    contactUrl.searchParams.set('subject', `Inquiry about ${currentPoster.title}`)
+    contactUrl.searchParams.set('message', `I am interested in the ${currentPoster.title} package to ${currentPoster.location}. Please provide more details about pricing, itinerary, and availability.`)
+
+    // Redirect to contact form with pre-filled data
+    window.location.href = contactUrl.toString()
+  }
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl w-full h-[90vh] p-0 overflow-hidden poster-carousel-overlay welcome-popup-content">
+      <DialogContent className="max-w-[50vw] w-[50vw] h-auto p-0 overflow-hidden bg-transparent border-0 shadow-none welcome-popup-content">
+        <DialogTitle className="sr-only">
+          Adbhut Global Travel Packages - Discover Our Premium Travel Destinations
+        </DialogTitle>
+
         {/* Close button */}
-        <DialogClose className="absolute top-4 right-4 z-10 poster-carousel-nav-button text-white rounded-full p-2 transition-colors">
+        <DialogClose className="absolute top-2 right-2 z-30 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-200">
           <X className="h-5 w-5" />
           <span className="sr-only">Close</span>
         </DialogClose>
 
-        <div className="relative w-full h-full">
+        <div className="relative">
           {/* Main poster display */}
-          <div className="relative w-full h-full overflow-hidden">
+          <div className="relative overflow-hidden flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
-                initial={{ opacity: 0, x: 300 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -300 }}
-                transition={{ duration: 0.5 }}
-                className="absolute inset-0"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+                className="relative cursor-pointer"
+                onClick={handlePosterClick}
               >
-                <img
-                  src={posters[currentIndex].image}
-                  alt={posters[currentIndex].alt}
-                  className="w-full h-full object-contain bg-black poster-image"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement
-                    target.src = "/placeholder.svg"
-                  }}
-                />
+                <div className="relative rounded-xl shadow-2xl overflow-hidden hover:shadow-3xl transition-shadow duration-300">
+                  <img
+                    src={posters[currentIndex].image}
+                    alt={posters[currentIndex].alt}
+                    className="w-full h-[60vh] object-cover"
+                    onError={(e) => {
+                      console.error(`Failed to load image: ${posters[currentIndex].image}`)
+                      setImageErrors(prev => ({ ...prev, [currentIndex]: true }))
+                      e.currentTarget.src = "/placeholder.svg"
+                    }}
+                    onLoad={() => {
+                      setLoadedImages(prev => ({ ...prev, [currentIndex]: true }))
+                    }}
+                  />
+
+                  {/* Loading indicator */}
+                  {!loadedImages[currentIndex] && !imageErrors[currentIndex] && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-700">
+                      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                    </div>
+                  )}
+
+                  {/* Package info overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
+                    <h3 className="text-white font-semibold text-sm">
+                      {posters[currentIndex].title}
+                    </h3>
+                    <p className="text-white/80 text-xs">
+                      {posters[currentIndex].location}
+                    </p>
+                  </div>
+                </div>
               </motion.div>
             </AnimatePresence>
+
+            {/* Navigation arrows */}
+            <Button
+              variant="ghost"
+              size="sm"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white border-0 shadow-lg h-10 w-10 p-0 rounded-full"
+              onClick={prevSlide}
+            >
+              <ChevronLeft className="h-5 w-5" />
+              <span className="sr-only">Previous poster</span>
+            </Button>
+
+            <Button
+              variant="ghost"
+              size="sm"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white border-0 shadow-lg h-10 w-10 p-0 rounded-full"
+              onClick={nextSlide}
+            >
+              <ChevronRight className="h-5 w-5" />
+              <span className="sr-only">Next poster</span>
+            </Button>
           </div>
 
-          {/* Navigation arrows */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 poster-carousel-nav-button text-white rounded-full h-12 w-12"
-            onClick={prevSlide}
-          >
-            <ChevronLeft className="h-6 w-6" />
-            <span className="sr-only">Previous poster</span>
-          </Button>
-
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 poster-carousel-nav-button text-white rounded-full h-12 w-12"
-            onClick={nextSlide}
-          >
-            <ChevronRight className="h-6 w-6" />
-            <span className="sr-only">Next poster</span>
-          </Button>
-
-          {/* Dots indicator */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
+          {/* Elegant progress indicators */}
+          <div className="flex justify-center mt-4 space-x-3">
             {posters.map((_, index) => (
               <button
                 key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 poster-carousel-dots ${
-                  index === currentIndex 
-                    ? "bg-white scale-110 shadow-lg" 
-                    : "bg-white/50 hover:bg-white/75"
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
+                  ? 'bg-white shadow-lg scale-125'
+                  : 'bg-white/60 hover:bg-white/80'
                 }`}
                 onClick={() => goToSlide(index)}
-                aria-label={`Go to poster ${index + 1}`}
+                aria-label={`Go to ${posters[index].title}`}
               />
             ))}
-          </div>
-
-          {/* Progress bar */}
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20">
-            <motion.div
-              className="h-full poster-carousel-progress"
-              initial={{ width: "0%" }}
-              animate={{ width: "100%" }}
-              transition={{ duration: slideInterval / 1000, ease: "linear" }}
-              key={currentIndex}
-            />
           </div>
         </div>
       </DialogContent>
     </Dialog>
-  )
-}
-
-// Standalone component for regular page usage
-export function PosterCarouselSection() {
-  return (
-    <div className="py-16 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Travel Packages</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Discover our exclusive travel packages designed to give you the best experiences
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {posters.map((poster) => (
-            <motion.div
-              key={poster.id}
-              className="group relative overflow-hidden rounded-lg shadow-lg bg-card cursor-pointer poster-grid-item"
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="aspect-[3/4] overflow-hidden">
-                <img
-                  src={poster.image}
-                  alt={poster.alt}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 poster-image"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement
-                    target.src = "/placeholder.svg"
-                  }}
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <h3 className="text-lg font-semibold drop-shadow-lg">{poster.name}</h3>
-                <p className="text-sm text-white/80 drop-shadow-md">Click to learn more</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </div>
   )
 }

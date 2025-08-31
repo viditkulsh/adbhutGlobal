@@ -238,17 +238,69 @@
 @keyframes welcomeSlideIn {
   from {
     opacity: 0;
-    transform: scale(0.9) translateY(20px);
+    transform: scale(0.95) translateY(30px);
   }
-
+  
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
 }
 
+@keyframes professionalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes subtleFloat {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
 .welcome-popup-content {
-  animation: welcomeSlideIn 0.6s ease-out;
+  animation: welcomeSlideIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  .professional-fade-in {
+    animation: professionalFadeIn 0.8s ease-out;
+  }
+  
+  .subtle-float {
+    animation: subtleFloat 3s ease-in-out infinite;
+  }
+  
+  /* Professional gradient border animation */
+  @keyframes professionalGradient {
+    0% {
+      background-position: 0% 50%;
+    }
+  
+    50% {
+      background-position: 100% 50%;
+    }
+  
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .professional-gradient-border {
+    background: linear-gradient(-45deg, #3b82f6, #6366f1, #8b5cf6, #06b6d4);
+    background-size: 400% 400%;
+    animation: professionalGradient 4s ease infinite;
 }
 
 /* Poster section grid animations */

@@ -9,46 +9,50 @@ interface WelcomePopupProps {
 }
 
 export default function WelcomePopup({ 
-  delay = 2000, 
-  showOnce = true 
+    delay = 1500, // Reduced delay for faster display
+    showOnce = true // Changed back to true for production
 }: WelcomePopupProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [hasShown, setHasShown] = useState(false)
+    const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+      setMounted(true)
+  }, [])
+
+    useEffect(() => {
+        if (!mounted) return
+
     // Check if popup has already been shown in this session
     if (showOnce) {
       const hasShownBefore = sessionStorage.getItem('welcomePopupShown')
-      if (hasShownBefore) {
-        setHasShown(true)
+        if (hasShownBefore) {
         return
       }
     }
 
     // Show popup after delay
-    const timer = setTimeout(() => {
-      if (!hasShown) {
+      const timer = setTimeout(() => {
         setIsOpen(true)
         if (showOnce) {
-          sessionStorage.setItem('welcomePopupShown', 'true')
-          setHasShown(true)
-        }
+            sessionStorage.setItem('welcomePopupShown', 'true')
       }
     }, delay)
 
     return () => clearTimeout(timer)
-  }, [delay, showOnce, hasShown])
+  }, [delay, showOnce, mounted])
 
   const handleClose = () => {
     setIsOpen(false)
   }
+
+    if (!mounted) return null
 
   return (
     <PosterCarousel 
       isOpen={isOpen} 
       onClose={handleClose}
       autoSlide={true}
-      slideInterval={4000}
+          slideInterval={3000} // Faster slide interval
     />
   )
 }

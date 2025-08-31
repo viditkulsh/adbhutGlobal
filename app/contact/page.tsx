@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -26,6 +26,23 @@ export default function ContactPage() {
     success: boolean
     message: string
   } | null>(null)
+
+  // Handle URL parameters to pre-fill form for specific destinations
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const destination = urlParams.get('destination')
+    const location = urlParams.get('location')
+    const subject = urlParams.get('subject')
+    const message = urlParams.get('message')
+
+    if (destination || location || subject || message) {
+      setFormData(prev => ({
+        ...prev,
+        subject: subject || prev.subject,
+        message: message || prev.message
+      }))
+    }
+  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target

@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <WelcomePopup delay={3000} showOnce={true} />
+      <WelcomePopup delay={1500} showOnce={true} />
       <HeroSection />
       <PackagesSection />
       <DestinationsCarousel />
