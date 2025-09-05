@@ -6,42 +6,31 @@ import { X, ChevronLeft, ChevronRight, Download, Share2, Camera, MapPin, Calenda
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
+import SectionLoading from "@/components/section-loading"
 
 // Generate array of all gallery images
 const generateGalleryImages = () => {
-  const images = []
+  const images: Array<{
+    id: number
+    src: string
+    alt: string
+    category: string
+    location: string
+    date: string
+  }> = []
   
-  // Add all numbered images from 2 to 79 (excluding 78 which seems to be missing)
-  for (let i = 2; i <= 79; i++) {
-    if (i !== 78) { // Skip missing image
-      images.push({
-        id: i,
-        src: `/Gallery/IMG-20250711-WA00${i.toString().padStart(2, '0')}.jpg`,
-        alt: `Travel Experience ${i - 1}`,
-        category: i <= 20 ? 'domestic' : i <= 40 ? 'international' : i <= 60 ? 'corporate' : 'adventure',
-        location: i <= 20 ? 'India' : i <= 40 ? 'International' : i <= 60 ? 'Business Events' : 'Adventure Tours',
-        date: '2025'
-      })
-    }
-  }
+  // Add the actual gallery images that exist (every 3rd number starting from 2)
+  const imageNumbers = [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38, 41, 44, 47, 50, 53, 56, 59, 62, 65, 68, 71, 74]
   
-  // Add the two additional images
-  images.push({
-    id: 80,
-    src: '/Gallery/IMG-20250712-WA0001.jpg',
-    alt: 'Travel Experience 79',
-    category: 'recent',
-    location: 'Recent Tours',
-    date: '2025'
-  })
-  
-  images.push({
-    id: 81,
-    src: '/Gallery/IMG-20250712-WA0002.jpg',
-    alt: 'Travel Experience 80',
-    category: 'recent',
-    location: 'Recent Tours',
-    date: '2025'
+  imageNumbers.forEach((num, index) => {
+    images.push({
+      id: index + 1,
+      src: `/Gallery/IMG-20250711-WA00${num.toString().padStart(2, '0')}.webp`,
+      alt: `Travel Experience ${index + 1}`,
+      category: 'travel',
+      location: 'Travel Destination',
+      date: '2025'
+    })
   })
   
   return images
@@ -158,13 +147,10 @@ export default function GalleryPage() {
 
   if (isLoading) {
     return (
-      <div className="pt-20 min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Loading gallery...</p>
-        </div>
+      <div className="pt-20 min-h-screen">
+        <SectionLoading section="gallery" className="min-h-[60vh]" />
       </div>
-    )
+    );
   }
 
   return (
@@ -233,14 +219,10 @@ export default function GalleryPage() {
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                             priority={index < 8}
                             loading={index < 8 ? "eager" : "lazy"}
-                            placeholder="blur"
+
                             blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-                          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
-                            <p className="text-white text-sm font-medium">{image.location}</p>
-                            <p className="text-white/80 text-xs">{image.date}</p>
-                          </div>
                         </div>
                       </CardContent>
                     </Card>

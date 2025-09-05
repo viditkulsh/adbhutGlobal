@@ -36,63 +36,88 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "navbar-scrolled bg-white/80 backdrop-blur-md shadow-md" : "bg-white/50 backdrop-blur-sm"
+        scrolled ? "navbar-scrolled bg-white/90 backdrop-blur-md shadow-md" : "bg-white/60 backdrop-blur-sm"
       }`}
     >
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        {/* Logo and Brand Name */}
-        <Link href="/" className="flex items-center space-x-3">
-          <Image
-            src="/logo_transparent.png"
-            alt="Adbhut Global Logo"
-            width={40}
-            height={40}
-            className="h-10 w-10 object-contain"
-          />
-          <div className="flex flex-col leading-tight">
-            <span className="text-2xl font-bold">
-              <span className="text-[#DA3521]">Adbhut</span>
-              <span className="text-[#0070f3]"> Global</span>
-            </span>
-            <span className="text-sm text-[#0070f3]">Tour and Travel Services</span>
-          </div>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-foreground hover:text-primary transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-
-        {/* Theme Toggle and Contact Button */}
-        <div className="hidden md:flex items-center space-x-4">
-          {mounted && (
-            <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
-              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </Button>
-          )}
-          <Link href="/contact">
-            <Button>Contact Us</Button>
+      <div className="container mx-auto px-3 sm:px-4 lg:px-6 xl:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-18 lg:h-20">
+          {/* Logo and Brand Name */}
+          <Link href="/" className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
+            <Image
+              src="/logo_transparent.png"
+              alt="Adbhut Global Logo"
+              width={32}
+              height={32}
+              className="h-8 w-8 sm:h-10 sm:w-10 object-contain"
+            />
+            <div className="flex flex-col leading-tight">
+              <span className="text-lg sm:text-xl lg:text-2xl font-bold">
+                <span className="text-[#DA3521]">Adbhut</span>
+                <span className="text-[#0070f3]"> Global</span>
+              </span>
+              <span className="text-xs sm:text-sm text-[#0070f3] hidden sm:block">
+                Tour and Travel Services
+              </span>
+            </div>
           </Link>
-        </div>
 
-        {/* Mobile Menu Button */}
-        <div className="flex md:hidden items-center space-x-4">
-          {mounted && (
-            <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
-              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-foreground hover:text-primary transition-colors duration-200 font-medium text-sm xl:text-base relative group"
+              >
+                {link.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full"></span>
+              </Link>
+            ))}
+          </nav>
+
+          {/* Theme Toggle and Contact Button */}
+          <div className="hidden lg:flex items-center space-x-3 xl:space-x-4">
+            {mounted && (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
+                className="h-9 w-9 xl:h-10 xl:w-10"
+              >
+                {theme === "dark" ? <Sun className="h-4 w-4 xl:h-5 xl:w-5" /> : <Moon className="h-4 w-4 xl:h-5 xl:w-5" />}
+              </Button>
+            )}
+            <Link href="/contact">
+              <Button className="px-4 py-2 xl:px-6 xl:py-2 text-sm xl:text-base font-medium">
+                Contact Us
+              </Button>
+            </Link>
+          </div>
+
+          {/* Mobile/Tablet Menu Button */}
+          <div className="flex lg:hidden items-center space-x-2 sm:space-x-3">
+            {mounted && (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
+                className="h-9 w-9"
+              >
+                {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              </Button>
+            )}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleMenu}
+              aria-label="Toggle menu"
+              className="h-9 w-9"
+            >
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
-          )}
-          <Button variant="ghost" size="icon" onClick={toggleMenu} aria-label="Toggle menu">
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
+          </div>
         </div>
       </div>
 
@@ -104,23 +129,38 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-background border-t"
+            className="lg:hidden bg-background/95 backdrop-blur-md border-t shadow-lg"
           >
-            <div className="container mx-auto px-4 py-4">
-              <nav className="flex flex-col space-y-4">
-                {NAV_LINKS.map((link) => (
-                  <Link
+            <div className="container mx-auto px-3 sm:px-4 py-4">
+              <nav className="flex flex-col space-y-1">
+                {NAV_LINKS.map((link, index) => (
+                  <motion.div
                     key={link.href}
-                    href={link.href}
-                    className="text-foreground hover:text-primary transition-colors py-2"
-                    onClick={toggleMenu}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
                   >
-                    {link.label}
-                  </Link>
+                    <Link
+                      href={link.href}
+                      className="text-foreground hover:text-primary hover:bg-accent/50 transition-all duration-200 py-3 px-4 rounded-md font-medium block"
+                      onClick={toggleMenu}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
                 ))}
-                <Button className="w-full" onClick={toggleMenu}>
-                  Book Now
-                </Button>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: NAV_LINKS.length * 0.1 }}
+                  className="pt-4 border-t border-border/50"
+                >
+                  <Link href="/contact" onClick={toggleMenu}>
+                    <Button className="w-full py-3 text-base font-medium">
+                      Contact Us
+                    </Button>
+                  </Link>
+                </motion.div>
               </nav>
             </div>
           </motion.div>

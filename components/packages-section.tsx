@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import Image from "next/image"
 import emailjs from "@emailjs/browser"
+import { useResponsivePopup } from "@/components/responsive-popup"
 
 interface Package {
   id: number
@@ -25,7 +26,7 @@ const packages: Package[] = [
     id: 1,
     name: "Bali Paradise",
     location: "Indonesia",
-    image: "/posters/Bali_Package.jpg",
+    image: "/posters/Bali_Package.webp",
     description: "Experience the tropical paradise with stunning beaches and cultural heritage",
     duration: "6 Days / 5 Nights",
   },
@@ -33,7 +34,7 @@ const packages: Package[] = [
     id: 2,
     name: "Dubai Explorer",
     location: "UAE",
-    image: "/posters/Dubai_Package.jpg",
+    image: "/posters/Dubai_Package.webp",
     description: "Discover the luxury and adventure of the Middle East",
     duration: "5 Days / 4 Nights",
   },
@@ -41,7 +42,7 @@ const packages: Package[] = [
     id: 3,
     name: "Goa Beaches",
     location: "India",
-    image: "/posters/Goa_Package.jpg",
+    image: "/posters/Goa_Package.webp",
     description: "Relax on pristine beaches and enjoy vibrant nightlife",
     duration: "4 Days / 3 Nights",
   },
@@ -49,7 +50,7 @@ const packages: Package[] = [
     id: 4,
     name: "Gujarat Heritage",
     location: "India",
-    image: "/posters/Gujarat_Package.jpg",
+    image: "/posters/Gujarat_Package.webp",
     description: "Explore rich culture, heritage sites, and traditional crafts",
     duration: "6 Days / 5 Nights",
   },
@@ -57,7 +58,7 @@ const packages: Package[] = [
     id: 5,
     name: "Odisha Temples",
     location: "India",
-    image: "/posters/Odisha_Package.jpg",
+    image: "/posters/Odisha_Package.webp",
     description: "Discover ancient temples and spiritual heritage",
     duration: "5 Days / 4 Nights",
   },
@@ -65,7 +66,7 @@ const packages: Package[] = [
     id: 6,
     name: "Thailand Explorer",
     location: "Thailand",
-    image: "/posters/Thailand_Package.jpg",
+    image: "/posters/Thailand_Package.webp",
     description: "Discover ancient temples, exotic cuisine, and tropical islands",
     duration: "7 Days / 6 Nights",
   },
@@ -73,7 +74,7 @@ const packages: Package[] = [
     id: 7,
     name: "Vietnam Adventure",
     location: "Vietnam",
-    image: "/posters/Vietnam_Package.jpg",
+    image: "/posters/Vietnam_Package.webp",
     description: "Experience historic beauty, culture, and stunning landscapes",
     duration: "8 Days / 7 Nights",
   },
@@ -96,6 +97,9 @@ export default function PackagesSection() {
     message: "",
     subject: ""
   })
+
+  // Use responsive popup hook
+  const { getPopupClasses, getTextSizes } = useResponsivePopup()
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex === packages.length - 1 ? 0 : prevIndex + 1))
@@ -203,7 +207,7 @@ export default function PackagesSection() {
               {packages.map((packageItem) => (
                 <motion.div
                   key={packageItem.id}
-                  className="package-card min-w-[300px] bg-card rounded-lg overflow-hidden shadow-lg cursor-pointer"
+                  className="package-card min-w-[300px] bg-card rounded-md overflow-hidden shadow-lg cursor-pointer border border-gray-100"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
                   onClick={() => handlePosterClick(packageItem)}
@@ -273,12 +277,12 @@ export default function PackagesSection() {
       {/* Contact Form Modal */}
       {selectedPackage && (
         <Dialog open={isContactFormOpen} onOpenChange={setIsContactFormOpen}>
-          <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
+          <DialogContent className={getPopupClasses("overflow-y-auto")}>
             <DialogHeader>
-              <DialogTitle className="text-2xl font-bold text-center">
+              <DialogTitle className={`font-bold text-center ${getTextSizes().title}`}>
                 Book Your {selectedPackage.name} Package
               </DialogTitle>
-              <p className="text-center text-muted-foreground mt-2">
+              <p className={`text-center text-muted-foreground mt-2 ${getTextSizes().body}`}>
                 Fill out the form below and we'll get back to you with the best deals!
               </p>
             </DialogHeader>

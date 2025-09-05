@@ -9,11 +9,15 @@ import Footer from "@/components/footer"
 import PerformanceOptimizer from "@/components/performance-optimizer"
 import Analytics from "@/components/analytics"
 import OrganizationSchema from "@/components/organization-schema"
-import "leaflet/dist/leaflet.css"
+import CriticalCSS from "@/components/critical-css"
+import ScriptOptimizer from "@/components/script-optimizer"
+import AsyncCSSLoader from "@/components/async-css-loader"
 
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: 'swap',
+  preload: true,
 })
 
 export const metadata: Metadata = {
@@ -82,9 +86,30 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        {/* Critical CSS inlined */}
+        <CriticalCSS />
+
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="canonical" href="https://adbhutglobal.com" />
         
+        {/* Preconnect to external domains for faster loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+
+        {/* Preload critical resources */}
+        <link
+          rel="preload"
+          href="/International/Africa/pic1.webp"
+          as="image"
+          type="image/webp"
+        />
+
+        {/* DNS prefetch for better performance */}
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://unpkg.com" />
+
         {/* Structured Data */}
         <script
           type="application/ld+json"
@@ -153,64 +178,47 @@ export default function RootLayout({
         <meta httpEquiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains" />
         <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
         <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
-        
-        {/* Preconnect to external domains */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
-        {/* Google Analytics */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'GA_MEASUREMENT_ID');
-            `,
-          }}
-        />
       </head>
       <body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable)}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
-          <Analytics />
-          <OrganizationSchema
-            name="Adbhut Global Tour and Travel Services"
-            url="https://adbhutglobal.com"
-            logo="https://adbhutglobal.com/logo_transparent.png"
-            contactPoint={{
-              telephone: "+91-XXXXXXXXXX",
-              email: "info@adbhutglobal.com",
-              contactType: "Customer Service",
-            }}
-            address={{
-              streetAddress: "Your Street Address",
-              addressLocality: "Your City",
-              addressRegion: "Your State",
-              postalCode: "Your Postal Code",
-              addressCountry: "IN",
-            }}
-            sameAs={[
-              "https://www.facebook.com/adbhutglobal",
-              "https://www.instagram.com/adbhutglobal",
-              "https://www.twitter.com/adbhutglobal",
-              "https://www.linkedin.com/company/adbhutglobal",
-            ]}
-            services={[
-              "International Travel Packages",
-              "Domestic Travel Packages",
-              "MICE Solutions",
-              "Corporate Travel Services",
-            ]}
-          />
-          <PerformanceOptimizer />
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </ThemeProvider>
+        <ScriptOptimizer>
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
+            <Analytics />
+            <AsyncCSSLoader />
+            <OrganizationSchema
+              name="Adbhut Global Tour and Travel Services"
+              url="https://adbhutglobal.com"
+              logo="https://adbhutglobal.com/logo_transparent.png"
+              contactPoint={{
+                telephone: "+91-XXXXXXXXXX",
+                email: "info@adbhutglobal.com",
+                contactType: "Customer Service",
+              }}
+              address={{
+                streetAddress: "Your Street Address",
+                addressLocality: "Your City",
+                addressRegion: "Your State",
+                postalCode: "Your Postal Code",
+                addressCountry: "IN",
+              }}
+              sameAs={[
+                "https://www.facebook.com/adbhutglobal",
+                "https://www.instagram.com/adbhutglobal",
+                "https://www.twitter.com/adbhutglobal",
+                "https://www.linkedin.com/company/adbhutglobal",
+              ]}
+              services={[
+                "International Travel Packages",
+                "Domestic Travel Packages",
+                "MICE Solutions",
+                "Corporate Travel Services",
+              ]}
+            />
+            <PerformanceOptimizer />
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </ThemeProvider>
+        </ScriptOptimizer>
       </body>
     </html>
   )

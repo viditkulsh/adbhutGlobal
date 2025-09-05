@@ -90,7 +90,7 @@ export default function AboutPage() {
                 className="relative h-[400px] rounded-lg overflow-hidden"
               >
                 <Image
-                  src="/Company/collage_pic3.jpg?height=800&width=600"
+                  src="/Company/collage_pic3.webp?height=800&width=600"
                   alt="About Adbhut Global"
                   fill
                   className="object-cover"

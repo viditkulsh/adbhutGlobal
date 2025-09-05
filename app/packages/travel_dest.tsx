@@ -434,7 +434,7 @@ export const travelPackages: Package[] = [
       id: 24,
       title: "African Safari Adventure",
       location: "Kenya, Africa",
-      image: "/International/Africa/pic1.jpg?height=600&width=800",
+      image: "/International/Africa/pic1.webp?height=600&width=800",
       duration: "10 Days / 9 Nights",
       groupSize: "Up to 8 people",
       description:

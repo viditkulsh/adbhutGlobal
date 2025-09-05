@@ -9,13 +9,21 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge";
 import { Clock, MapPin, Users, Star, ChevronDown, ChevronUp } from "lucide-react";
 import { travelPackages, Package } from "./travel_dest";
+import SectionLoading from "@/components/section-loading";
 import Link from "next/link";
 
 const PackagesPage = () => {
   const [activeTab, setActiveTab] = useState("all");
   const [expandedPackage, setExpandedPackage] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const searchParams = useSearchParams();
   const destination = searchParams.get("destination");
+
+  useEffect(() => {
+    // Simulate loading time for better UX
+    const timer = setTimeout(() => setIsLoading(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const togglePackageDetails = (id: number) => {
     setExpandedPackage(expandedPackage === id ? null : id);
@@ -28,6 +36,14 @@ const PackagesPage = () => {
       : activeTab === "all"
       ? travelPackages
       : travelPackages.filter((pkg) => pkg.category === activeTab);
+
+  if (isLoading) {
+    return (
+      <div className="pt-20 min-h-screen">
+        <SectionLoading section="packages" className="min-h-[60vh]" />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -231,7 +247,7 @@ const PackagesPage = () => {
                 </div>
                 <div className="relative h-64 rounded-lg overflow-hidden">
                   <img
-                    src="/Company/drm_vac.jpeg?height=600&width=400"
+                    src="/Company/drm_vac.webp?height=600&width=400"
                     alt="Custom Travel Package"
                     className="w-full h-full object-cover"
                   />
