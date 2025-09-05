@@ -1,4 +1,4 @@
-/* Adbhut Global - Complete CSS Framework (WORKING VERSION) */
+/* Adbhut Global - Complete CSS Framework (MERGED FROM WORKING & FIXED FILES) */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -425,7 +425,7 @@
 }
 
 /* ================================
-   WORKING ANIMATION KEYFRAMES
+   ANIMATION KEYFRAMES
    ================================*/
 @keyframes shimmer {
   0% {
