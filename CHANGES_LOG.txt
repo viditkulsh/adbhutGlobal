@@ -1,0 +1,77 @@
+CHANGES MADE BEFORE REVERTING TO COMMIT ea3d2d14297ffbecef28862a25e7f68371f0e14a
+================================================================================
+Date: September 6, 2025
+Requested by: User
+Action: Revert to commit ea3d2d1 and document changes
+
+CHANGES THAT WILL BE REVERTED:
+================================================================================
+
+1. FILES DELETED DURING RECENT SESSION:
+   - app/globals-working.css (duplicate CSS file)
+   - app/globals-merged.css (duplicate CSS file) 
+   - app/globals-errors.css (duplicate CSS file)
+   - app/CSS-BIFURCATION-SUMMARY.md (documentation for deleted CSS files)
+
+2. CONFIGURATION CHANGES:
+   - next.config.mjs: Removed deprecated 'swcMinify' option
+   - Fixed Next.js configuration warnings
+
+3. COMPONENT MODIFICATIONS (FOR DEBUGGING POPUP ISSUES):
+   - components/welcome-popup.tsx: 
+     * Added extensive debugging logs
+     * Simplified component structure to fix hydration issues
+     * Modified useEffect dependencies
+     * Changed showOnce and delay parameters for testing
+   
+   - components/poster-carousel.tsx:
+     * Added debug console logs
+     * Modified to help troubleshoot popup display issues
+   
+   - app/page.tsx:
+     * Added test components (TestDialog, PosterCarouselTrigger)
+     * Modified WelcomePopup props for testing (showOnce=false, delay=2000)
+     * Added manual trigger buttons for popup testing
+
+4. NEW TEST FILES CREATED:
+   - components/test-dialog.tsx (created for testing Dialog component functionality)
+
+5. GIT REPOSITORY CHANGES THAT WILL BE REVERTED:
+   - 6f2b822: Merge branch 'main' of https://github.com/viditkulsh/adbhutGlobal
+   - 44274f2: chore: update .gitignore to exclude CHANGES_LOG.txt
+   - 6773878: chore: update .gitignore to correctly ignore the .github directory
+   - 2df8595: chore: update .gitignore to correctly ignore the .github directory
+   - 38821af: chore: update .gitignore to include local environment files and workflows; remove .nvmrc
+   - 5a624d9: fix: update logo image source in README.md
+   - a8111f2: Update README
+   - e46b83d: chore: update package.json and tsconfig.json for improved build and linting processes
+   - ff43882: Merge pull request #2 from viditkulsh/revert-1-copilot/fix-68c7c4bb-98b3-4c5f-aff1-6be77787b72d
+   - 2455662: Revert "Merge test branch: Simplify codebase architecture and improve maintainability"
+
+ORIGINAL ISSUE BEING ADDRESSED:
+================================================================================
+- Popup components (WelcomePopup/PosterCarousel) were not displaying properly
+- Repository had irrelevant duplicate CSS files that needed cleanup
+- Next.js configuration had deprecated options causing warnings
+
+REASON FOR REVERT:
+================================================================================
+User requested to revert all changes and return repository to the state of 
+commit ea3d2d14297ffbecef28862a25e7f68371f0e14a (file update).
+
+REVERT DETAILS:
+================================================================================
+Target commit: ea3d2d14297ffbecef28862a25e7f68371f0e14a
+Target commit message: "file update"
+Target commit date: Sun Aug 31 19:46:27 2025 +0530
+Target commit change: Removed IMAGE_OPTIMIZATION_GUIDE.md (133 lines deleted)
+
+POST-REVERT STATE:
+================================================================================
+After this revert, the repository will be in the exact state as it was on 
+August 31, 2025, at commit ea3d2d1. All subsequent changes, improvements, 
+and modifications will be undone.
+
+================================================================================
+End of Changes Log
+================================================================================
