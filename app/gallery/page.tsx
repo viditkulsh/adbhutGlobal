@@ -18,14 +18,14 @@ const generateGalleryImages = () => {
         id: i,
         src: `/Gallery/IMG-20250711-WA00${i.toString().padStart(2, '0')}.jpg`,
         alt: `Travel Experience ${i - 1}`,
-        category: i <= 20 ? 'domestic' : i <= 40 ? 'international' : i <= 60 ? 'corporate' : 'adventure',
-        location: i <= 20 ? 'India' : i <= 40 ? 'International' : i <= 60 ? 'Business Events' : 'Adventure Tours',
+        category: i <= 20 ? 'domestic' : i <= 40 ? 'domestic' : i <= 60 ? 'corporate' : 'adventure',
+        location: i <= 20 ? 'Domestic Tours' : i <= 40 ? 'Domestic Adventures' : i <= 60 ? 'Business Events' : 'Adventure Tours',
         date: '2025'
       })
     }
   }
   
-  // Add the two additional images
+  // Add the two additional images from July 12
   images.push({
     id: 80,
     src: '/Gallery/IMG-20250712-WA0001.jpg',
@@ -44,6 +44,19 @@ const generateGalleryImages = () => {
     date: '2025'
   })
   
+  // Add new images from October 11, 2025 - Jim Corbett Business Trip
+  for (let i = 2; i <= 25; i++) {
+    images.push({
+      id: 81 + i,
+      src: `/Gallery/IMG-20251011-WA00${i.toString().padStart(2, '0')}.jpg`,
+      alt: `Jim Corbett Business Trip ${i - 1}`,
+      category: 'corporate',
+      location: 'Jim Corbett National Park',
+      locationUrl: 'https://maps.app.goo.gl/DhUmg8XkFA8juXpy5',
+      date: 'October 2025'
+    })
+  }
+
   return images
 }
 
@@ -53,6 +66,7 @@ export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<any>(null)
   const [lightboxIndex, setLightboxIndex] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
+  const [imageDimensions, setImageDimensions] = useState<{ width: number, height: number } | null>(null)
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1000)
@@ -78,11 +92,20 @@ export default function GalleryPage() {
   const openLightbox = (image: any, index: number) => {
     setSelectedImage(image)
     setLightboxIndex(index)
+    setImageDimensions(null) // Reset dimensions
     
     // Update URL with photo ID
     const url = new URL(window.location.href)
     url.searchParams.set('photo', image.id.toString())
     window.history.pushState({}, '', url.toString())
+  }
+
+  const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = event.currentTarget
+    setImageDimensions({
+      width: img.naturalWidth,
+      height: img.naturalHeight
+    })
   }
 
   const closeLightbox = () => {
@@ -104,6 +127,7 @@ export default function GalleryPage() {
     const newImage = galleryImages[newIndex]
     setSelectedImage(newImage)
     setLightboxIndex(newIndex)
+    setImageDimensions(null) // Reset dimensions for new image
     
     // Update URL with new photo ID
     const url = new URL(window.location.href)
@@ -270,21 +294,21 @@ export default function GalleryPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-2 sm:p-4"
               onClick={closeLightbox}
             >
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
-                className="relative max-w-4xl max-h-full"
+                className="relative w-full h-full max-w-7xl flex items-center justify-center"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Close Button */}
                 <Button
                   variant="outline"
                   size="icon"
-                  className="absolute top-4 right-4 z-10 bg-white/10 border-white/20 text-white hover:bg-white/20"
+                  className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10 bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-sm"
                   onClick={closeLightbox}
                 >
                   <X className="h-4 w-4" />
@@ -294,7 +318,7 @@ export default function GalleryPage() {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/10 border-white/20 text-white hover:bg-white/20"
+                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-sm"
                   onClick={() => navigateLightbox('prev')}
                 >
                   <ChevronLeft className="h-4 w-4" />
@@ -303,51 +327,64 @@ export default function GalleryPage() {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/10 border-white/20 text-white hover:bg-white/20"
+                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-sm"
                   onClick={() => navigateLightbox('next')}
                 >
                   <ChevronRight className="h-4 w-4" />
                 </Button>
 
-                {/* Image */}
-                <div className="relative max-w-4xl max-h-[80vh]">
-                  <Image
-                    src={selectedImage.src}
-                    alt={selectedImage.alt}
-                    width={1200}
-                    height={800}
-                    className="max-w-full max-h-full object-contain rounded-lg"
-                    priority={true}
-                    quality={90}
-                  />
+                {/* Image Container */}
+                <div className="relative w-full h-full flex items-center justify-center pb-20 sm:pb-24">
+                  <div className="relative max-w-full max-h-full flex items-center justify-center">
+                    <Image
+                      src={selectedImage.src}
+                      alt={selectedImage.alt}
+                      width={1200}
+                      height={800}
+                      className="max-w-full max-h-full w-auto h-auto object-contain rounded-lg shadow-2xl"
+                      style={{
+                        maxWidth: 'calc(100vw - 16px)',
+                        maxHeight: 'calc(100vh - 140px)',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain'
+                      }}
+                      onLoad={handleImageLoad}
+                      priority={true}
+                      quality={95}
+                      sizes="100vw"
+                    />
+                  </div>
                 </div>
 
                 {/* Image Info */}
-                <div className="absolute bottom-4 left-4 right-4 bg-black/50 backdrop-blur-sm rounded-lg p-4 text-white">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="font-semibold">{selectedImage.alt}</h3>
-                      {/*<p className="text-sm text-white/80">{selectedImage.location} • {selectedImage.date}</p>*/}
+                <div className="absolute bottom-2 left-2 right-2 sm:bottom-4 sm:left-4 sm:right-4 bg-black/50 backdrop-blur-sm rounded-lg p-3 sm:p-4 text-white">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-semibold text-sm sm:text-base truncate">{selectedImage.alt}</h3>
+                      <p className="text-xs sm:text-sm text-white/80">{selectedImage.location} • {selectedImage.date}</p>
                       <p className="text-xs text-white/60">Photo ID: {selectedImage.id}</p>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 flex-shrink-0">
                       <Button
                         variant="outline"
                         size="sm"
-                        className="bg-white/10 border-white/20 text-white hover:bg-white/20"
+                        className="bg-white/10 border-white/20 text-white hover:bg-white/20 text-xs sm:text-sm h-8 sm:h-9"
                         onClick={handleCopyLink}
                       >
-                        <Copy className="h-4 w-4 mr-2" />
-                        Copy Link
+                        <Copy className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                        <span className="hidden sm:inline">Copy Link</span>
+                        <span className="sm:hidden">Copy</span>
                       </Button>
                       <Button
                         variant="outline"
                         size="sm"
-                        className="bg-white/10 border-white/20 text-white hover:bg-white/20"
+                        className="bg-white/10 border-white/20 text-white hover:bg-white/20 text-xs sm:text-sm h-8 sm:h-9"
                         onClick={handleShare}
                       >
-                        <Share2 className="h-4 w-4 mr-2" />
-                        Share
+                        <Share2 className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                        <span className="hidden sm:inline">Share</span>
+                        <span className="sm:hidden">Share</span>
                       </Button>
                     </div>
                   </div>
