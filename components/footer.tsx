@@ -13,7 +13,7 @@ export default function Footer() {
               Unforgettable journeys await you with our expert travel services. Explore the world with confidence and
               comfort.
             </p>
-            <SocialMediaLinks />
+            {/* <SocialMediaLinks /> */} {/* Uncomment if you want to show social media icons */}
           </div>
 
           <div>
