@@ -20,11 +20,8 @@ const nextConfig = {
   poweredByHeader: false,
   // Enable static optimization
   generateEtags: true,
-  // Optimize for performance
-  experimental: {
-    optimizeCss: true,
-    gzipSize: true,
-  },
+  // Remove experimental features that cause build issues
+  trailingSlash: true,
 }
 
 export default nextConfig
