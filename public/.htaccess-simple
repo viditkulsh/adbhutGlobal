@@ -1,0 +1,15 @@
+# Simple rewrite rules for Next.js static export
+RewriteEngine On
+
+# Handle gallery route
+RewriteRule ^gallery/?$ gallery/index.html [L]
+
+# Handle other page routes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/?$ $1/index.html [L]
+
+# Enable compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript
+</IfModule>

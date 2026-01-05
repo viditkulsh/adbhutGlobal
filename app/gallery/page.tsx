@@ -201,6 +201,46 @@ const generateGalleryMedia = (): MediaItem[] => {
     })
   }
 
+  // Add images from Goa - December 2025
+  for (let i = 108; i <= 130; i++) {
+    media.push({
+      id: 3000 + i,
+      type: 'image',
+      src: `/Gallery/GOA-20260106-IMG${i.toString().padStart(4, '0')}.jpeg`,
+      alt: `Goa Trip ${i - 107}`,
+      category: 'domestic',
+      location: 'Goa',
+      locationUrl: 'https://maps.app.goo.gl/UKbhr4xB4AWqRzJM6',
+      date: 'December 2025'
+    })
+  }
+
+  // Add video from Goa - December 2025
+  media.push({
+    id: 3131,
+    type: 'video',
+    src: '/Gallery/videos/GOA-20260106-VID0001.mp4',
+    alt: 'Goa Trip Video',
+    category: 'domestic',
+    location: 'Goa',
+    locationUrl: 'https://maps.app.goo.gl/UKbhr4xB4AWqRzJM6',
+    date: 'December 2025'
+  })
+
+  // Add images from Somnath - December 2025
+  for (let i = 132; i <= 144; i++) {
+    media.push({
+      id: 3000 + i,
+      type: 'image',
+      src: `/Gallery/SOMNATH-20260106-IMG${i.toString().padStart(4, '0')}.jpeg`,
+      alt: `Somnath Tour ${i - 131}`,
+      category: 'domestic',
+      location: 'Somnath',
+      locationUrl: 'https://maps.app.goo.gl/LZk2EjHxv2rTDKKf9',
+      date: 'December 2025'
+    })
+  }
+
   return media
 }
 

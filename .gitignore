@@ -6,6 +6,7 @@
 # next.js
 /.next/
 /out/
+/public_html1/
 
 # production
 /build

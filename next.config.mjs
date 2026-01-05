@@ -20,8 +20,10 @@ const nextConfig = {
   poweredByHeader: false,
   // Enable static optimization
   generateEtags: true,
-  // Remove experimental features that cause build issues
-  trailingSlash: true,
+  // Remove trailing slash for better hosting compatibility
+  trailingSlash: false,
+  // Ensure proper static export behavior
+  distDir: 'out',
 }
 
 export default nextConfig
